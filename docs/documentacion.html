@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentación — skills portables</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <a class="volver" href="index.html">← Skills portables</a>
+  <span class="version">v0.1.0</span>
+</header>
+
+<main class="documento">
+<h1 id="documentacion-capa-de-gobernanza-para-programacion-autonoma">Documentación — capa de gobernanza para programación autónoma</h1>
+<p>Manual de uso de la colección. Explica <strong>para qué sirve cada skill, cuándo actúa, qué te da y cómo se instala</strong>.</p>
+<blockquote><strong>Qué no encontrarás aquí:</strong> el procedimiento interno de cada skill. Eso vive dentro de cada una y cambia con el tiempo; repetirlo aquí crearía una segunda versión que acabaría mintiendo. Esto documenta <strong>el contrato</strong>: lo que puedes esperar. Para el detalle, abre la skill.</blockquote>
+<hr>
+<h2 id="1-que-es-esto">1. Qué es esto</h2>
+<p>Un conjunto de once skills que, instaladas juntas, hacen que se pueda <strong>programar hablando en lenguaje corriente</strong> sin que el trabajo pierda rigor.</p>
+<p>La idea de fondo: hay un puñado de buenas prácticas que marcan la diferencia entre un proyecto que aguanta y uno que se desmorona —comprobar antes de decir que algo está terminado, dejar escrito por qué se decidió cada cosa, mirar la pantalla en vez de suponer, no tocar lo que funciona—. Normalmente dependen de que alguien se acuerde. <strong>Aquí no dependen de eso.</strong></p>
+<h3 id="como-funcionan-juntas-sin-conocerse">Cómo funcionan juntas sin conocerse</h3>
+<p>Ninguna skill nombra a otra. Se coordinan de dos formas:</p>
+<ul>
+<li><strong>Por descripción.</strong> Cada una declara cuándo es útil. Lo que pides encaja con una y esa se activa. No hay cableado entre ellas.</li>
+<li><strong>Por las reglas instaladas.</strong> Las que actúan solas necesitan una línea en un archivo que se lea al principio de cada conversación. Ahí es donde se cablea el flujo completo.</li>
+</ul>
+<p>Consecuencia práctica: <strong>puedes instalar una sola y funciona.</strong> Y puedes instalarlas todas y funcionan como un sistema.</p>
+<hr>
+<h2 id="2-activas-y-pasivas">2. Activas y pasivas</h2>
+<p>Es la distinción que más conviene entender.</p>
+<p><strong>Las activas se despiertan porque tú dices algo.</strong> «Apunta esto», «dame ideas», «vamos a revisar el proyecto». No hay que configurar nada: se instalan y ya responden.</p>
+<p><strong>Las pasivas actúan solas, en un momento concreto.</strong> Por ejemplo, justo antes de que se te diga que un trabajo está terminado. Ese momento no lo anuncias tú, así que <strong>no hay ninguna frase que las despierte</strong> — y por eso necesitan una línea instalada donde se lea en cada conversación.</p>
+<p><strong>Si no instalas esa línea, la skill está ahí pero no hace nada.</strong> Sin aviso, sin síntoma. Por eso la instalación tiene dos pasos.</p>
+<table><thead><tr>
+<th>Skill</th>
+<th>Cómo actúa</th>
+</tr></thead><tbody>
+<tr>
+<td><code>planificar-proyecto</code></td>
+<td>Activa</td>
+</tr>
+<tr>
+<td><code>constructor-del-manual</code></td>
+<td>Activa</td>
+</tr>
+<tr>
+<td><code>lluvia-de-ideas</code></td>
+<td>Activa</td>
+</tr>
+<tr>
+<td><code>apuntar</code></td>
+<td>Activa</td>
+</tr>
+<tr>
+<td><code>auditar-proyecto</code></td>
+<td>Activa</td>
+</tr>
+<tr>
+<td><code>registrar-comprobacion-humana</code></td>
+<td>Activa</td>
+</tr>
+<tr>
+<td><code>investigar</code></td>
+<td><strong>Pasiva</strong></td>
+</tr>
+<tr>
+<td><code>validar-antes-de-entregar</code></td>
+<td><strong>Pasiva</strong></td>
+</tr>
+<tr>
+<td><code>registrar-cambios</code></td>
+<td><strong>Pasiva</strong></td>
+</tr>
+<tr>
+<td><code>mirar-la-pantalla</code></td>
+<td><strong>Pasiva</strong></td>
+</tr>
+<tr>
+<td><code>recorrer-la-aplicacion</code></td>
+<td><strong>Pasiva</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="3-instalacion">3. Instalación</h2>
+<p><strong>El procedimiento completo está en <a href="https://github.com/Sagitario-A/skills-portables/blob/main/INSTALAR.md">INSTALAR.md</a></strong>, con los dos caminos posibles, los comandos y cómo comprobar que ha funcionado. Aquí solo va la forma, para que se entienda por qué es así.</p>
+<p><strong>Paso 1 — Copiar las skills.</strong> Cada una es una carpeta con su archivo dentro. Van a la carpeta de skills, la tuya de usuario o la del proyecto: se elige una de las dos, <strong>nunca las dos a la vez</strong>.</p>
+<p><strong>Paso 2 — Poner las cinco reglas.</strong> Cada skill pasiva trae un archivo <code>INSTALACION.md</code> que declara el texto exacto que hay que dejar puesto y dónde va. Se crea un archivo por skill en la carpeta de reglas.</p>
+<p><strong>Este segundo paso lo haces tú.</strong> Puedes pedírselo a Claude —enseñándole <a href="https://github.com/Sagitario-A/skills-portables/blob/main/INSTALAR.md">INSTALAR.md</a> y las declaraciones— y que te proponga los archivos antes de crearlos, pero <strong>no ocurre solo ni hay ninguna skill que lo haga</strong>: es un paso manual, asistido si quieres.</p>
+<p><strong>Por qué hacen falta dos pasos:</strong> no existe ningún mecanismo que permita a un paquete escribir en el manual de tu proyecto, ni ejecutar nada al instalarse. Está comprobado contra la documentación oficial, no supuesto.</p>
+<h3 id="que-aparece-al-configurar">Qué aparece al configurar</h3>
+<p>Un archivo por cada skill pasiva, en la carpeta de reglas del sitio donde hayas instalado —la del proyecto, o la tuya de usuario:</p>
+<pre><code>.claude/rules/            (o bien  ~/.claude/rules/)
+├── investigar.md
+├── validar-antes-de-entregar.md
+├── registrar-cambios.md
+├── mirar-la-pantalla.md
+└── recorrer-la-aplicacion.md</code></pre>
+<p>Cada uno lleva una primera línea diciendo qué skill lo puso. <strong>Desinstalar es borrar ese archivo.</strong></p>
+<p>Y cada texto <strong>empieza apuntando a su propia skill, en condicional</strong>: si la skill está instalada, que se use ella, que lleva el procedimiento completo; si no está, vale lo que dice el resto del archivo, que se basta solo. Sin esa primera línea pasa algo que no se ve: la regla ya dice qué hacer, así que <strong>la skill no llega a abrirse nunca</strong> y se acaba usando la versión corta teniendo instalada la larga.</p>
+<p>Si no hay carpeta de reglas —porque uses otra herramienta—, el texto va dentro del documento de instrucciones que tenga, entre marcas de inicio y fin que dicen en texto llano de dónde salió y que puede retirarse.</p>
+<h3 id="se-instala-todo-y-se-configura-todo">Se instala todo y se configura todo</h3>
+<p><strong>Las once se instalan y todas sus reglas se configuran, en cualquier proyecto.</strong> Sin excepciones y sin decisiones que tomar.</p>
+<p>Podría parecer que algunas sobran —¿para qué la regla de mirar la pantalla en un proyecto sin nada visible?—. No sobran, porque <strong>están redactadas en condicional</strong>: «ningún cambio <em>visible</em>…», «cuando se acabe de construir <em>un camino que una persona pueda recorrer</em>…». Donde no hay nada que encaje, la condición no se cumple y la regla no llega a activarse. Está cargada y dormida.</p>
+<p>Configurarlo todo tiene dos ventajas sobre hacerlo a medias:</p>
+<ul>
+<li><strong>No hay que acordarse de nada.</strong> Todos los proyectos se comportan igual, y no hay que comprobar qué está activo antes de fiarse.</li>
+<li><strong>El día que el proyecto cambie, ya está puesto.</strong> Si le sale una interfaz donde antes no había, esa regla empieza a actuar sola.</li>
+</ul>
+<h3 id="si-has-editado-una-regla-a-mano">Si has editado una regla a mano</h3>
+<p>Al reinstalar o actualizar, se compara con lo declarado. Si coincide, se sustituye. <strong>Si no coincide, está tocada: no se toca, se te enseña la diferencia y se pregunta.</strong> Tus cambios no se borran en silencio.</p>
+<hr>
+<h2 id="4-el-flujo-completo">4. El flujo completo</h2>
+<p>Así encajan de principio a fin:</p>
+<p><strong>1. Tienes una idea</strong> → <code>planificar-proyecto</code>. Te pregunta en lenguaje llano hasta que la idea quede definida. Sale <code>PROYECTO.md</code>.</p>
+<p><strong>2. Conversación nueva</strong> → <code>constructor-del-manual</code>. Lee esa definición y escribe el manual del proyecto: las reglas de trabajo y el ciclo que las encadena. Deja el terreno preparado.</p>
+<p><em>Las cinco reglas de las skills pasivas no las pone esta skill: se instalan por separado, una sola vez, siguiendo <a href="https://github.com/Sagitario-A/skills-portables/blob/main/INSTALAR.md">INSTALAR.md</a>.</em></p>
+<p><strong>3. Se construye.</strong> Y mientras se construye, actúan solas: <code>investigar</code> antes de algo complejo, <code>mirar-la-pantalla</code> tras un cambio visual, <code>recorrer-la-aplicacion</code> al terminar un flujo, <code>validar-antes-de-entregar</code> antes de decirte que está hecho, y <code>registrar-cambios</code> al cerrar.</p>
+<p><strong>4. Tú compruebas</strong> → <code>registrar-comprobacion-humana</code> anota lo que confirmes.</p>
+<p><strong>5. Y cuando quieras</strong> → <code>lluvia-de-ideas</code> para abrir, <code>auditar-proyecto</code> para repasarlo todo, <code>apuntar</code> para no perder nada por el camino.</p>
+<hr>
+<h2 id="5-las-once-una-por-una">5. Las once, una por una</h2>
+<h3 id="planificar-proyecto-activa"><code>planificar-proyecto</code> · activa</h3>
+<p><strong>Para qué.</strong> Convertir una idea contada como tú la cuentas en un proyecto definido, antes de escribir una línea de código.</p>
+<p><strong>Cuándo.</strong> «Tengo una idea», «quiero hacer una aplicación que…», «ayúdame a definir esto».</p>
+<p><strong>Qué te da.</strong> Una conversación de preguntas en lenguaje llano —nunca técnico— hasta que tú digas que la idea está cerrada. Al final, un resumen de lo entendido para que lo corrijas, y después el documento <code>PROYECTO.md</code>.</p>
+<p><strong>Lo que no hace.</strong> No escribe código, no elige tecnología hasta el final, y <strong>no da la planificación por terminada por su cuenta</strong>: termina cuando tú lo digas.</p>
+<p><strong>Instalación.</strong> No necesita nada.</p>
+<hr>
+<h3 id="constructor-del-manual-activa"><code>constructor-del-manual</code> · activa</h3>
+<p><strong>Para qué.</strong> Escribir el manual del proyecto: el archivo que se lee al principio de cada conversación y gobierna cómo se trabaja ahí.</p>
+<p><strong>Cuándo.</strong> Al preparar un proyecto nuevo, cuando pidas dejar listo para trabajar uno ya definido, o cuando el manual de uno existente se haya quedado viejo o demasiado largo.</p>
+<p><strong>Qué te da.</strong> No solo un documento: <strong>un reparto</strong>. Cada regla va al sitio que le toca —manual, regla de zona, skill o bloqueo automático— y se te explica por qué. Y distingue tres niveles de prohibición, incluido uno intermedio que te pregunta aunque trabajes sin aprobaciones.</p>
+<p>Y no deja las obligaciones como una lista de normas sueltas: <strong>escribe el ciclo de trabajo</strong> que encadena las que haya instaladas de verdad, para que se lean como un método y no como cinco deberes independientes.</p>
+<p>En un proyecto que ya existe, primero te enseña un diagnóstico y <strong>tú eliges cuánto se interviene</strong>: retoque, poda o rehacerlo. Con copia de seguridad, y nunca borra una regla que no entienda.</p>
+<p><strong>Lo que no hace.</strong> No define el producto: define cómo se trabaja en él.</p>
+<p><strong>Instalación.</strong> No necesita nada.</p>
+<hr>
+<h3 id="investigar-pasiva"><code>investigar</code> · pasiva</h3>
+<p><strong>Para qué.</strong> Que no se decida de memoria cuando equivocarse sale caro.</p>
+<p><strong>Cuándo.</strong> Sola, antes de construir algo. Pasa cinco comprobaciones de una línea y solo investiga si alguna salta — la primera corta casi todos los casos, así que no se dispara por cualquier cosa. También si se lo pides expresamente.</p>
+<p><strong>Qué te da.</strong> Una investigación acotada, con una pregunta concreta, <strong>buscando en contra y no a favor</strong>, y un documento con lo encontrado, lo descartado y las fuentes.</p>
+<p><strong>Lo que no hace.</strong> No decide. Y respeta lo que decidiste queriendo: lo investigado informa, no manda. <strong>Y no investiga si no puede consultar fuentes fuera</strong>: lo dice antes de empezar, en vez de entregar deducciones propias con aspecto de investigación.</p>
+<p><strong>Instalación.</strong> <strong>Sí.</strong> Sin su regla, sus comprobaciones no llegan a pasarse nunca.</p>
+<hr>
+<h3 id="validar-antes-de-entregar-pasiva"><code>validar-antes-de-entregar</code> · pasiva</h3>
+<p><strong>Para qué.</strong> Que «está terminado» sea una afirmación comprobada, o una frase honesta sobre lo que no se ha podido comprobar.</p>
+<p><strong>Cuándo.</strong> Justo antes de decirte que algo está hecho.</p>
+<p><strong>Qué te da.</strong> Tres bloques: qué se ejecutó y con qué resultado real, <strong>qué quedó sin comprobar y por qué</strong>, y qué te toca comprobar a ti —entre cinco y nueve puntos concretos, no un «échale un ojo»—.</p>
+<p>Si el proyecto no tiene comprobaciones definidas, te propone unas explicadas en cristiano y <strong>se quedan como tuyas</strong>.</p>
+<p><strong>Lo que no hace.</strong> No dice que sea lo que pediste. Verde significa «no está roto de las formas que este proyecto sabe detectar», nada más.</p>
+<p><strong>Instalación.</strong> <strong>Sí, y es la más necesaria.</strong> Su momento es enteramente interno.</p>
+<hr>
+<h3 id="registrar-cambios-pasiva"><code>registrar-cambios</code> · pasiva</h3>
+<p><strong>Para qué.</strong> Que dentro de seis meses se pueda saber <strong>por qué el proyecto es como es</strong>.</p>
+<p><strong>Cuándo.</strong> Al terminar cualquier trabajo con efecto real, antes de darlo por cerrado.</p>
+<p><strong>Qué te da.</strong> Una entrada en <code>CHANGELOG.md</code> con su identificador, la fecha, la zona, <strong>la decisión con su porqué y qué alternativa se descartó</strong>, y la validación realmente ejecutada.</p>
+<p><strong>Lo que no hace.</strong> No entra lo mecánico —formateo, erratas—, ni ideas ni pendientes: aquí solo lo ya hecho. Y <strong>el pasado no se reescribe</strong>: si algo se revierte, se añade una entrada nueva que nombra a la anterior.</p>
+<p><strong>Instalación.</strong> <strong>Sí.</strong></p>
+<hr>
+<h3 id="mirar-la-pantalla-pasiva"><code>mirar-la-pantalla</code> · pasiva</h3>
+<p><strong>Para qué.</strong> Ver la interfaz de verdad en vez de suponer que está bien. <em>Los tests dicen si las cuentas salen; no dicen si se puede leer.</em></p>
+<p><strong>Cuándo.</strong> Tras cualquier cambio visible, antes de darlo por terminado. También si dices que algo se ve raro, se sale o no se lee.</p>
+<p><strong>Qué te da.</strong> Capturas de la aplicación real abiertas y juzgadas —no una suposición—, mirando por separado si se lee, si cabe, cómo queda vacío y cómo queda en el otro tema. Y al terminar, <strong>te pide que confirmes que es lo que querías</strong>, porque eso no está en ninguna captura.</p>
+<p><strong>Lo que no hace.</strong> No audita rendimiento, no comprueba caminos, y no ve lo que solo existe en el aparato de verdad —teclado del móvil, gestos, giro—: eso te lo pide a ti, en concreto.</p>
+<p><strong>Instalación.</strong> <strong>Sí</strong>, y se configura en todos los proyectos: donde no haya nada visible, su condición no se cumple y la regla queda dormida sin estorbar.</p>
+<p><strong>Montaje.</strong> La primera vez en cada proyecto hay que montar el navegador automatizado, y decidir con qué aparato y a qué tamaño se captura. Está en su archivo <code>MONTAJE.md</code>, aparte para no cargarlo las demás veces. <strong>Sin eso no puede trabajar</strong>: lo dice y se para, y si el cambio se entrega igual, se entrega sin mirar.</p>
+<hr>
+<h3 id="recorrer-la-aplicacion-pasiva"><code>recorrer-la-aplicacion</code> · pasiva</h3>
+<p><strong>Para qué.</strong> Comprobar que <strong>el camino funciona cuando lo recorre una persona</strong>. Las comprobaciones automáticas verifican las piezas, no el trayecto.</p>
+<p><strong>Cuándo.</strong> Al acabar de construir o cambiar un camino que alguien puede recorrer.</p>
+<p><strong>Qué te da.</strong> La aplicación conducida por su interfaz, sin atajos, hasta el final. Y si hizo falta un atajo para avanzar, <strong>ese recorrido no cuenta como comprobado</strong> y se dice.</p>
+<p><strong>Antes de tocar nada</strong> comprueba contra qué entorno trabaja, y si hay algo que alguien echaría de menos, te avisa antes de la primera pulsación. Y limpia lo que crea, incluso si el recorrido falla a la mitad.</p>
+<p><strong>Lo que no hace.</strong> No juzga el aspecto, y no sustituye a las comprobaciones del proyecto: es lenta y frágil, y comprueba que algo funciona <em>ahora</em>.</p>
+<p><strong>Instalación.</strong> <strong>Sí.</strong></p>
+<p><strong>Montaje.</strong> La primera vez en cada proyecto hay que montar el navegador automatizado, y decidir contra qué entorno se recorre y con qué credenciales se entra. Está en su archivo <code>MONTAJE.md</code>. <strong>Sin eso no puede trabajar</strong>: lo dice y se para.</p>
+<hr>
+<h3 id="registrar-comprobacion-humana-activa"><code>registrar-comprobacion-humana</code> · activa</h3>
+<p><strong>Para qué.</strong> Guardar lo que <strong>tú</strong> has comprobado con tus manos. Es la única información que hoy no guarda nada: un registro de cambios solo habla de cosas que cambiaron, y cuando revisas algo, la mayor parte de lo que compruebas <strong>está bien</strong>.</p>
+<p><strong>Cuándo.</strong> Cuando confirmas haber probado algo: «ya lo he probado y va bien», «esto lo dejo así, no lo arreglamos».</p>
+<p><strong>Qué te da.</strong> Líneas en <code>COMPROBACIONES.md</code> con cinco estados fijos. Dos de ellos no los guarda ningún otro documento: <strong>lo aparcado a propósito</strong> —que te protege de que alguien «arregle» en seis meses algo que decidiste dejar— y <strong>el hallazgo abierto</strong>, que es deuda y no decisión.</p>
+<p><strong>Lo que no hace.</strong> No comprueba nada: escribe lo que tú dictas. No inventa resultados ni da por confirmado lo que nadie confirmó.</p>
+<p><strong>Instalación.</strong> No necesita nada.</p>
+<hr>
+<h3 id="auditar-proyecto-activa"><code>auditar-proyecto</code> · activa</h3>
+<p><strong>Para qué.</strong> Recorrer el proyecto entero hasta que no quede ninguna parte sin mirar nunca. <strong>Lo no comprobado es invisible</strong>: no genera avisos y se confunde con lo que está bien.</p>
+<p><strong>Cuándo.</strong> «Vamos a revisar el proyecto», «¿qué partes no hemos mirado nunca?».</p>
+<p><strong>Qué te da.</strong> La lista completa de zonas, y dentro de cada una <strong>el catálogo de lo que hace de verdad, sacado del código</strong> — porque «moderación revisada» no significa nada. Cada punto con su estado, y avisando de lo que cambió desde su última revisión y qué cambió.</p>
+<p><strong>Lo que no hace.</strong> No comprueba —tú compruebas— y <strong>no escribe nada</strong>: la lista y el avance se calculan cada vez leyendo el proyecto y el historial. No puede desincronizarse porque no hay nada que sincronizar.</p>
+<p><strong>Instalación.</strong> No necesita nada.</p>
+<hr>
+<h3 id="apuntar-activa"><code>apuntar</code> · activa</h3>
+<p><strong>Para qué.</strong> Registrar una idea o un pendiente <strong>sin implementarlo</strong>. Quien dice «apúntalo» está pidiendo justo que no se haga ahora.</p>
+<p><strong>Cuándo.</strong> «Apunta esto», «que no se me olvide», «esto para más adelante».</p>
+<p><strong>Qué te da.</strong> Una línea en <code>PENDIENTES.md</code>, en su sección temática, con marcas de frescura para ver de un vistazo por dónde se movió el proyecto. Si además desarrollas el cómo, eso va a <code>pendientes-extra.md</code> con su identificador, para que la lista siga leyéndose de un vistazo.</p>
+<p><strong>Al completarse no se borra: se tacha en su sitio</strong> con la referencia del cambio. Una idea tachada explica por qué el proyecto es como es.</p>
+<p><strong>Lo que no hace.</strong> No prioriza, no estima, no planifica, y no implementa — ni lo que parezca de dos minutos.</p>
+<p><strong>Instalación.</strong> No necesita nada.</p>
+<hr>
+<h3 id="lluvia-de-ideas-activa"><code>lluvia-de-ideas</code> · activa</h3>
+<p><strong>Para qué.</strong> Proponer cosas que no se habían pensado, con criterio y sin relleno.</p>
+<p><strong>Cuándo.</strong> «Dame ideas», «¿qué le falta a esto?».</p>
+<p><strong>Qué te da.</strong> Dos pasadas. Primero <strong>lo evidente</strong>, en lista compacta para despachar en veinte segundos. Y después <strong>tres ideas desarrolladas</strong>, cada una citando algo concreto de tu proyecto, con su juicio y su mejor argumento en contra. Tres, no veinte: nueve de golpe significa que cada una recibió la novena parte de la atención.</p>
+<p><strong>Lo que no hace.</strong> No implementa, no prioriza y no rellena para llegar a un número. Si de una vuelta salen dos ideas buenas, son dos.</p>
+<p><strong>Instalación.</strong> No necesita nada.</p>
+<hr>
+<h2 id="6-los-documentos-que-aparecen">6. Los documentos que aparecen</h2>
+<table><thead><tr>
+<th>Documento</th>
+<th>Quién lo escribe</th>
+<th>Qué guarda</th>
+</tr></thead><tbody>
+<tr>
+<td><code>PROYECTO.md</code></td>
+<td><code>planificar-proyecto</code></td>
+<td>Qué es el proyecto y qué no. Núcleo congelado</td>
+</tr>
+<tr>
+<td><code>PENDIENTES.md</code></td>
+<td><code>apuntar</code></td>
+<td>Lo que quieres hacer algún día</td>
+</tr>
+<tr>
+<td><code>pendientes-extra.md</code></td>
+<td><code>apuntar</code></td>
+<td>El desarrollo técnico de una idea</td>
+</tr>
+<tr>
+<td><code>CHANGELOG.md</code></td>
+<td><code>registrar-cambios</code></td>
+<td>Lo ya hecho, y por qué</td>
+</tr>
+<tr>
+<td><code>COMPROBACIONES.md</code></td>
+<td><code>registrar-comprobacion-humana</code></td>
+<td>Lo que has comprobado a mano</td>
+</tr>
+<tr>
+<td>El manual del proyecto</td>
+<td><code>constructor-del-manual</code></td>
+<td>Cómo se trabaja aquí</td>
+</tr>
+</tbody></table>
+<p><strong>Si el proyecto ya tiene uno de estos con otro nombre, se respeta el suyo.</strong> Los nombres estándar son para cuando se crea de cero.</p>
+<hr>
+<h2 id="7-convenciones-fijas">7. Convenciones fijas</h2>
+<p>No se eligen por proyecto. Tenerlas iguales en todas partes es lo que permite leer un documento ajeno sin aprenderse una leyenda nueva.</p>
+<ul>
+<li><strong><code>CH-001</code></strong> — identificador de cambio. Tres cifras, correlativo, sin huecos.</li>
+<li><strong><code>EXTRA-1</code></strong> — identificador del desarrollo técnico de una idea.</li>
+<li><strong><code>D-1</code></strong> — identificador de una decisión en la definición del proyecto.</li>
+<li><strong>🟠 ⚪</strong> — marcas de frescura: naranja lo tocado en la última ronda, blanco la anterior, sin marca lo más viejo.</li>
+<li><strong>✅ 🐛 🎨 ⚠️ ❌</strong> — los cinco estados de lo comprobado: confirmado correcto, fallo encontrado y corregido, cambio aplicado sin que hubiera fallo, aparcado a propósito, hallazgo abierto.</li>
+<li><strong><code>✅ Realizado</code></strong> + texto tachado — cómo se cierra un pendiente, sin borrarlo nunca.</li>
+<li>El registro de cambios es <strong>una tabla</strong>, una fila por entrada.</li>
+</ul>
+<hr>
+<h2 id="8-cosas-que-conviene-saber">8. Cosas que conviene saber</h2>
+<p><strong>Puedes renunciar a cualquier cosa.</strong> Si dices «esto no lo compruebes» o «no investigues, tira», se respeta sin discutir — y se deja dicho en la entrega que se hizo sin comprobar. No se anuncia en cada mensaje porque las pasivas existen precisamente para que no tengas que gestionarlas, pero la puerta está ahí.</p>
+<p><strong>Nada de esto garantiza cumplimiento.</strong> El manual del proyecto se lee y se sigue, pero no es una barrera. Para lo que jamás debe ocurrir hace falta un bloqueo automático de verdad — y el constructor del manual te avisa cuando algo lo necesita, en vez de dejarte creer que escribirlo basta.</p>
+<p><strong>Solo funcionan sobre lo que se ve en un navegador</strong>, las dos que miran y recorren. En aplicaciones nativas no se configuran, y lo dicen en vez de fingir cobertura.</p>
+<p><strong>Y esas dos necesitan un paso extra</strong>: montar el navegador automatizado, una vez por proyecto y solo si el proyecto tiene interfaz. No montarlo no rompe nada del resto — esas dos se paran y lo dicen. El procedimiento está en <a href="https://github.com/Sagitario-A/skills-portables/blob/main/INSTALAR.md">INSTALAR.md</a>.</p>
+</main>
+
+<footer class="pie">
+  <p>Documentación de la versión 0.1.0 de la colección.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skills portables</title>
+<meta name="description" content="Once skills de uso general para Claude Code: investigar antes de construir, mirar la pantalla, comprobar antes de entregar y dejar escrito el porqué.">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<main>
+
+<h1>Once skills que hacen que programar hablando no pierda rigor</h1>
+<p class="entrada">
+  Comprobar antes de decir que algo está terminado, dejar escrito por qué se decidió cada
+  cosa, mirar la pantalla en vez de suponer. Normalmente todo eso depende de que alguien se
+  acuerde. <strong>Aquí no.</strong>
+</p>
+
+<!-- ───────────────────────── Instalar ───────────────────────── -->
+<section class="instalar">
+  <input type="radio" name="via" id="via-usuario" checked>
+  <input type="radio" name="via" id="via-proyecto">
+
+  <div class="paneles">
+
+    <section class="panel p-usuario">
+      <label class="lomo" for="via-usuario">A nivel de usuario</label>
+      <div class="dentro">
+        <p class="para-quien">Para todos tus proyectos, de una vez.</p>
+        <div class="caja">
+          <button class="copiar" type="button" data-para="prompt-usuario">Copiar</button>
+<pre id="prompt-usuario"><code><!-- prompt-usuario: generado desde INSTALAR.md — no editar a mano -->
+Instala la colección de skills portables para todos mis proyectos.
+
+La tengo descargada en &lt;carpeta&gt;. Si no la tengo, clónala de
+https://github.com/Sagitario-A/skills-portables
+
+Lee su INSTALAR.md y haz el camino de usuario entero, las dos piezas: copia las
+once carpetas de skills a ~/.claude/skills/, y crea los cinco archivos de reglas
+en ~/.claude/rules/ con el texto exacto que declara cada INSTALACION.md, con su
+línea de atribución delante.
+
+No resumas ni reescribas ningún texto: van literales.
+
+Al terminar, pásame las comprobaciones del paso 3 y dime qué ha quedado sin hacer.
+<!-- fin prompt-usuario --></code></pre>
+        </div>
+        <p class="nota">
+          Escribe fuera del proyecto, así que <strong>pedirá permiso un par de veces y hay
+          que aceptar</strong> — te enseña cada texto antes de escribirlo.
+          <a href="https://github.com/Sagitario-A/skills-portables/blob/main/INSTALAR.md">Hacerlo a mano</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="panel p-proyecto">
+      <label class="lomo" for="via-proyecto">A nivel de proyecto</label>
+      <div class="dentro">
+        <p class="para-quien">Dentro del repositorio, viaja con él.</p>
+        <div class="caja">
+          <button class="copiar" type="button" data-para="prompt-proyecto">Copiar</button>
+<pre id="prompt-proyecto"><code><!-- prompt-proyecto: generado desde INSTALAR.md — no editar a mano -->
+Instala la colección de skills portables en este proyecto.
+
+La tengo descargada en &lt;carpeta&gt;. Si no la tengo, clónala de
+https://github.com/Sagitario-A/skills-portables
+
+Lee su INSTALAR.md y haz el camino de proyecto entero, las dos piezas: copia las
+once carpetas de skills a .claude/skills/, y crea los cinco archivos de reglas en
+.claude/rules/ con el texto exacto que declara cada INSTALACION.md, con su línea
+de atribución delante.
+
+No resumas ni reescribas ningún texto: van literales.
+
+Al terminar, pásame las comprobaciones del paso 4 y dime qué ha quedado sin hacer.
+<!-- fin prompt-proyecto --></code></pre>
+        </div>
+        <p class="nota">
+          Todo ocurre dentro de la carpeta del proyecto, así que <strong>casi no pregunta
+          nada</strong>.
+          <a href="https://github.com/Sagitario-A/skills-portables/blob/main/INSTALAR.md">Hacerlo a mano</a>
+        </p>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<!-- ───────────────────────── Cómo se usa ───────────────────────── -->
+<section class="uso">
+  <h2>Cómo se usa</h2>
+
+  <ol class="flujo">
+    <li><strong>Tienes una idea.</strong> Te pregunta en lenguaje llano hasta que la idea
+      quede definida. Sale <code>PROYECTO.md</code>.</li>
+    <li><strong>Conversación nueva.</strong> Lee esa definición y escribe el manual del
+      proyecto: las reglas de trabajo y el ciclo que las encadena.</li>
+    <li><strong>Se construye.</strong> Y mientras se construye, actúan solas: se investiga
+      antes de algo complejo, se mira la pantalla tras un cambio visual, se recorre el flujo
+      al terminarlo, se comprueba antes de decirte que está hecho, y se registra al cerrar.</li>
+    <li><strong>Tú compruebas</strong>, y se anota lo que confirmes.</li>
+    <li><strong>Y cuando quieras</strong>, ideas para abrir, una auditoría para repasarlo
+      todo, y apuntar para no perder nada por el camino.</li>
+  </ol>
+
+  <div class="dos-modos">
+    <article>
+      <h3>Se piden hablando</h3>
+      <dl>
+        <dt><code>planificar-proyecto</code></dt>
+        <dd>«Tengo una idea», «quiero hacer una aplicación que…»</dd>
+
+        <dt><code>constructor-del-manual</code></dt>
+        <dd>«Define las reglas de este proyecto», «deja esto preparado para trabajar»</dd>
+
+        <dt><code>lluvia-de-ideas</code></dt>
+        <dd>«Dame ideas para esto», «¿qué le falta a este proyecto?»</dd>
+
+        <dt><code>apuntar</code></dt>
+        <dd>«Apunta esto», «que no se me olvide», «esto para más adelante»</dd>
+
+        <dt><code>auditar-proyecto</code></dt>
+        <dd>«Vamos a revisar el proyecto entero», «¿qué no se ha comprobado nunca?»</dd>
+
+        <dt><code>registrar-comprobacion-humana</code></dt>
+        <dd>«Ya lo he probado y va bien», «esto lo dejo así, no lo arreglamos»</dd>
+      </dl>
+    </article>
+
+    <article>
+      <h3>Actúan solas</h3>
+      <dl>
+        <dt><code>investigar</code></dt>
+        <dd>Antes de construir algo difícil de deshacer. También: «investiga cómo se hace
+          esto»</dd>
+
+        <dt><code>mirar-la-pantalla</code></dt>
+        <dd>Tras cualquier cambio visible. También: «esto se ve raro», «se sale»</dd>
+
+        <dt><code>recorrer-la-aplicacion</code></dt>
+        <dd>Al acabar un camino que alguien puede recorrer. También: «prueba que se puede
+          hacer de verdad»</dd>
+
+        <dt><code>validar-antes-de-entregar</code></dt>
+        <dd>Justo antes de decirte que algo está hecho. También: «pasa las comprobaciones»</dd>
+
+        <dt><code>registrar-cambios</code></dt>
+        <dd>Al terminar un trabajo con efecto real. También: «¿por qué está esto así?»</dd>
+      </dl>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <span>v<span id="version-actual">0.1.0</span></span>
+  <a href="documentacion.html">Documentación</a>
+  <a id="enlace-repo" href="#">Repositorio</a>
+  <span class="descarga">
+    <select id="lista-versiones" aria-label="Versión a descargar"><option value="">…</option></select>
+    <a id="enlace-descarga" href="#">Descargar</a>
+  </span>
+</footer>
+
+<script>
+// El único sitio donde vive el nombre del repositorio.
+const REPO = 'Sagitario-A/skills-portables'
+const base = 'https://github.com/' + REPO
+
+document.getElementById('enlace-repo').href = base
+
+// Copiar el prompt.
+for (const b of document.querySelectorAll('.copiar')) {
+  b.addEventListener('click', async () => {
+    const texto = document.getElementById(b.dataset.para).innerText
+    try {
+      await navigator.clipboard.writeText(texto.trim())
+      b.textContent = 'Copiado'
+    } catch {
+      b.textContent = 'Copia a mano'
+    }
+    setTimeout(() => { b.textContent = 'Copiar' }, 2000)
+  })
+}
+
+// Versiones, desde las etiquetas del repositorio.
+const lista = document.getElementById('lista-versiones')
+const descarga = document.getElementById('enlace-descarga')
+const zip = (ref) => base + '/archive/refs/' + ref + '.zip'
+const ponerDescarga = () => {
+  descarga.href = lista.value ? zip('tags/' + lista.value) : zip('heads/main')
+}
+lista.addEventListener('change', ponerDescarga)
+
+fetch('https://api.github.com/repos/' + REPO + '/tags')
+  .then((r) => (r.ok ? r.json() : Promise.reject()))
+  .then((tags) => {
+    if (!tags.length) return Promise.reject()
+    lista.innerHTML = ''
+    for (const t of tags) {
+      const o = document.createElement('option')
+      o.value = t.name
+      o.textContent = t.name
+      lista.appendChild(o)
+    }
+    document.getElementById('version-actual').textContent = tags[0].name.replace(/^v/, '')
+    ponerDescarga()
+  })
+  .catch(() => {
+    lista.innerHTML = '<option value="">rama principal</option>'
+    descarga.href = zip('heads/main')
+  })
+</script>
+
+</body>
+</html>

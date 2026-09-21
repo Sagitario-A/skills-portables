@@ -1,0 +1,264 @@
+/* Skills portables — hoja única, sin dependencias. */
+
+:root {
+  --tinta: #1a1918;
+  --tinta-suave: #5e5d59;
+  --tenue: #8a8880;
+  --papel: #fdfcfa;
+  --papel-hundido: #f5f4ef;
+  --linea: rgba(0, 0, 0, 0.11);
+  --acento: #b4532a;
+  --ancho: 54rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tinta: #eceae5;
+    --tinta-suave: #a9a69f;
+    --tenue: #78756e;
+    --papel: #16151a;
+    --papel-hundido: #1f1e24;
+    --linea: rgba(255, 255, 255, 0.13);
+    --acento: #e8875c;
+  }
+}
+
+:root[data-theme="dark"] {
+  --tinta: #eceae5;
+  --tinta-suave: #a9a69f;
+  --tenue: #78756e;
+  --papel: #16151a;
+  --papel-hundido: #1f1e24;
+  --linea: rgba(255, 255, 255, 0.13);
+  --acento: #e8875c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 16px;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 17px/1.6 ui-serif, Georgia, "Iowan Old Style", serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+code, pre, button, select { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+a { color: var(--acento); text-underline-offset: 2px; }
+
+main { max-width: var(--ancho); margin: 0 auto; padding: 56px 0 0; }
+
+h1 {
+  margin: 0 0 20px;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.entrada { margin: 0 0 44px; font-size: 1.06rem; color: var(--tinta-suave); max-width: 40rem; }
+.entrada strong { color: var(--tinta); }
+
+/* ── Instalar: dos paneles, uno abierto ─────────────────────────
+   Sin JavaScript: dos radios ocultos y hermanos que reaccionan. */
+
+.instalar > input { position: absolute; opacity: 0; pointer-events: none; }
+
+.paneles { display: flex; gap: 10px; align-items: stretch; }
+
+.panel {
+  flex: 0 0 58px;
+  min-width: 0;
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  background: var(--papel-hundido);
+  overflow: hidden;
+  transition: flex-basis 0.28s ease, flex-grow 0.28s ease;
+}
+
+#via-usuario:checked ~ .paneles .p-usuario,
+#via-proyecto:checked ~ .paneles .p-proyecto { flex: 1 1 auto; }
+
+/* El lomo: título del panel. Vertical cuando está plegado. */
+.lomo {
+  display: block;
+  padding: 18px 16px;
+  font: 600 0.92rem/1.2 ui-serif, Georgia, serif;
+  letter-spacing: 0.01em;
+  color: var(--tinta-suave);
+  cursor: pointer;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+}
+.lomo:hover { color: var(--acento); }
+
+#via-usuario:checked ~ .paneles .p-usuario .lomo,
+#via-proyecto:checked ~ .paneles .p-proyecto .lomo {
+  writing-mode: horizontal-tb;
+  color: var(--tinta);
+  cursor: default;
+  padding-bottom: 4px;
+}
+
+.dentro { display: none; padding: 0 20px 20px; }
+#via-usuario:checked ~ .paneles .p-usuario .dentro,
+#via-proyecto:checked ~ .paneles .p-proyecto .dentro { display: block; }
+
+.instalar > input:focus-visible ~ .paneles .lomo { outline: 2px solid var(--acento); outline-offset: -3px; }
+
+.para-quien { margin: 0 0 14px; font-size: 0.92rem; color: var(--acento); }
+
+/* ── El recuadro del prompt ─────────────────────────────────── */
+
+.caja { position: relative; }
+
+.caja pre {
+  margin: 0;
+  padding: 16px 18px;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.copiar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 5px 12px;
+  border: 1px solid var(--linea);
+  border-radius: 5px;
+  background: var(--papel-hundido);
+  color: var(--tinta-suave);
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+.copiar:hover { color: var(--acento); border-color: var(--acento); }
+
+.nota { margin: 12px 0 0; font-size: 0.86rem; color: var(--tinta-suave); }
+.nota strong { color: var(--tinta); }
+.nota a { margin-left: 6px; font-size: 0.95em; white-space: nowrap; }
+
+/* ── Cómo se usa ────────────────────────────────────────────── */
+
+.uso { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--linea); }
+
+h2 { margin: 0 0 24px; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
+h3 { margin: 0 0 12px; font-size: 0.95rem; font-weight: 600; }
+
+.flujo { margin: 0 0 40px; padding-left: 1.3em; max-width: 42rem; }
+.flujo li { margin-bottom: 11px; }
+
+.dos-modos { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+
+dl { margin: 0; }
+dt { margin-top: 15px; font-size: 0.86rem; }
+dt:first-of-type { margin-top: 0; }
+dt code { color: var(--acento); }
+dd { margin: 4px 0 0; font-size: 0.9rem; color: var(--tinta-suave); }
+
+code { font-size: 0.87em; }
+
+/* ── Pie ────────────────────────────────────────────────────── */
+
+.pie {
+  max-width: var(--ancho);
+  margin: 56px auto 0;
+  padding: 16px 0 40px;
+  border-top: 1px solid var(--linea);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  font-size: 0.82rem;
+  color: var(--tenue);
+}
+
+.pie .descarga { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+.pie select {
+  font-size: 0.78rem;
+  padding: 3px 6px;
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  background: var(--papel);
+  color: var(--tinta-suave);
+}
+
+/* ── Documento volcado ──────────────────────────────────────── */
+
+.cabecera {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 22px 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  border-bottom: 1px solid var(--linea);
+  font-size: 0.86rem;
+}
+.version { color: var(--tenue); font-size: 0.8rem; }
+
+.documento { max-width: var(--ancho); margin: 0 auto; padding: 36px 0 30px; }
+.documento h1 { font-size: 1.8rem; margin-bottom: 22px; }
+.documento h2 { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--linea); }
+.documento h3 { margin-top: 30px; font-size: 1.06rem; }
+.documento h4 { margin-top: 22px; font-size: 0.96rem; }
+.documento p { margin: 0 0 15px; }
+.documento ul, .documento ol { padding-left: 1.25em; }
+.documento li { margin-bottom: 8px; }
+.documento hr { border: 0; height: 1px; background: var(--linea); margin: 32px 0; }
+.documento pre {
+  background: var(--papel-hundido);
+  border: 1px solid var(--linea);
+  border-radius: 5px;
+  padding: 13px 15px;
+  overflow-x: auto;
+  font-size: 0.8rem;
+}
+.documento code { background: var(--papel-hundido); padding: 1px 5px; border-radius: 3px; }
+.documento pre code { background: none; padding: 0; }
+.documento table { width: 100%; border-collapse: collapse; margin: 0 0 18px; font-size: 0.92rem; }
+.documento th, .documento td {
+  text-align: left; vertical-align: top;
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--linea);
+}
+.documento blockquote {
+  margin: 18px 0;
+  padding: 13px 17px;
+  background: var(--papel-hundido);
+  border-left: 3px solid var(--linea);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.94rem;
+  color: var(--tinta-suave);
+}
+li > p { margin: 0 0 9px; }
+li > p:last-child { margin-bottom: 0; }
+li > pre, li > blockquote { margin: 9px 0; }
+
+/* ── Pantalla estrecha ──────────────────────────────────────── */
+
+@media (max-width: 46rem) {
+  .dos-modos { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 40rem) {
+  main { padding-top: 36px; }
+
+  /* Apilados: el plegado queda como una banda horizontal. */
+  .paneles { flex-direction: column; }
+  .panel { flex: 0 0 auto; }
+  .lomo { writing-mode: horizontal-tb; padding: 14px 16px; }
+  #via-usuario:checked ~ .paneles .p-usuario .lomo,
+  #via-proyecto:checked ~ .paneles .p-proyecto .lomo { padding-bottom: 4px; }
+
+  .pie { gap: 12px; }
+  .pie .descarga { margin-left: 0; width: 100%; }
+}
