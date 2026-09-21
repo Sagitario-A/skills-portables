@@ -32,22 +32,38 @@
         <div class="caja">
           <button class="copiar" type="button" data-para="prompt-usuario">Copiar</button>
 <pre id="prompt-usuario"><code><!-- prompt-usuario: generado desde INSTALAR.md — no editar a mano -->
-Instala la colección de skills portables en mi carpeta personal, para que valga
+Instala en mi carpeta personal la colección de skills portables, para que valga
 en todos mis proyectos.
 
-Descárgala en una carpeta temporal desde
-https://github.com/Sagitario-A/skills-portables
-y sitúate en su última versión publicada: la etiqueta más reciente, no la rama.
+1. Tráetela. Clona https://github.com/Sagitario-A/skills-portables en una
+   carpeta temporal, con el historial completo —un clonado superficial deja
+   fuera las etiquetas—, y sitúate en la última versión publicada creando una
+   rama local a partir de su etiqueta de versión más alta.
 
-Lee su INSTALAR.md y haz el camino de usuario entero, las dos piezas: copia las
-once carpetas de skills a ~/.claude/skills/, y crea los cinco archivos de reglas
-en ~/.claude/rules/ con el texto exacto que declara cada INSTALACION.md, con su
-línea de atribución delante.
+2. Abre el INSTALAR.md que viene dentro y haz el camino de usuario entero. Son
+   dos piezas y hacen falta las dos:
+   - copia las once carpetas de skills a ~/.claude/skills/;
+   - crea los cinco archivos de reglas en ~/.claude/rules/, cada uno con el
+     texto exacto que declara su INSTALACION.md y con su línea de atribución
+     delante.
 
-No resumas ni reescribas ningún texto: van literales.
+   Esos cinco textos van literales: no los resumas, no los reescribas y no los
+   mejores.
 
-Al terminar, pásame las comprobaciones del paso 3, dime qué versión has
-instalado y qué ha quedado sin hacer.
+3. Hazlo copiando, no con «npx skills»: esa herramienta reparte la colección
+   por medio centenar de carpetas de otros programas que no uso.
+
+NO TE SALGAS DE AHÍ. Lo único que puedes escribir está dentro de ~/.claude/, y
+la carpeta temporal del punto 1. Si algo te lleva a escribir en cualquier otro
+sitio, párate y dímelo en vez de hacerlo.
+
+Al terminar, en este orden:
+- si estás dentro de la carpeta de un proyecto, comprueba que ese proyecto no
+  tiene además la colección en su .claude/: tenerla en los dos sitios a la vez
+  la rompe, y si la encuentras dímelo en vez de borrar nada;
+- borra la carpeta temporal;
+- pasa las comprobaciones que indique el INSTALAR.md para este camino;
+- y dime qué versión has instalado, qué encontraste y qué ha quedado sin hacer.
 <!-- fin prompt-usuario --></code></pre>
         </div>
         <p class="nota">
@@ -67,19 +83,34 @@ instalado y qué ha quedado sin hacer.
 <pre id="prompt-proyecto"><code><!-- prompt-proyecto: generado desde INSTALAR.md — no editar a mano -->
 Instala la colección de skills portables en este proyecto.
 
-Descárgala en una carpeta temporal fuera del proyecto, desde
-https://github.com/Sagitario-A/skills-portables
-y sitúate en su última versión publicada: la etiqueta más reciente, no la rama.
+1. Tráetela. Clona https://github.com/Sagitario-A/skills-portables en una
+   carpeta temporal fuera del proyecto, con el historial completo —un clonado
+   superficial deja fuera las etiquetas—, y sitúate en la última versión
+   publicada creando una rama local a partir de su etiqueta de versión más alta.
 
-Lee su INSTALAR.md y haz el camino de proyecto entero, las dos piezas: copia las
-once carpetas de skills a .claude/skills/, y crea los cinco archivos de reglas en
-.claude/rules/ con el texto exacto que declara cada INSTALACION.md, con su línea
-de atribución delante.
+2. Abre el INSTALAR.md que viene dentro y haz el camino de proyecto entero. Son
+   dos piezas y hacen falta las dos:
+   - copia las once carpetas de skills a .claude/skills/ de este proyecto;
+   - crea los cinco archivos de reglas en .claude/rules/, cada uno con el texto
+     exacto que declara su INSTALACION.md y con su línea de atribución delante.
 
-No resumas ni reescribas ningún texto: van literales.
+   Esos cinco textos van literales: no los resumas, no los reescribas y no los
+   mejores.
 
-Al terminar, pásame las comprobaciones del paso 4, dime qué versión has instalado
-y qué ha quedado sin hacer.
+3. Hazlo copiando, nunca con «npx skills»: aquí deja enlaces con rutas de esta
+   máquina, y el proyecto se queda sin skills en cuanto alguien lo clona.
+
+NO TE SALGAS DEL PROYECTO. Lo único que puedes escribir está dentro de esta
+carpeta, y la descarga temporal del punto 1. Si algo te lleva a escribir en mi
+carpeta personal, párate y dímelo en vez de hacerlo.
+
+Al terminar, en este orden:
+- comprueba que no queda nada de la colección en ~/.claude/skills/ ni en
+  ~/.claude/rules/: tenerla en los dos sitios a la vez la rompe, y si
+  encuentras algo dímelo en vez de borrarlo;
+- borra la carpeta temporal;
+- pasa las comprobaciones que indique el INSTALAR.md para este camino;
+- y dime qué versión has instalado, qué encontraste y qué ha quedado sin hacer.
 <!-- fin prompt-proyecto --></code></pre>
         </div>
         <p class="nota">
@@ -161,7 +192,7 @@ y qué ha quedado sin hacer.
 </main>
 
 <footer class="pie">
-  <span>v<span id="version-actual">0.1.1</span></span>
+  <span>v<span id="version-actual">0.1.2</span></span>
   <a href="documentacion.html">Documentación</a>
   <a id="enlace-repo" href="#">Repositorio</a>
   <span class="descarga">

@@ -82,16 +82,7 @@ sitios. **Uno, y solo uno.**
 
 Hazlo **antes** de copiar nada. Es un comando y tarda un segundo.
 
-**Si tienes Node**, lo más fiable es preguntárselo a la herramienta, que además distingue lo
-que está puesto de lo que está puesto pero sin enlazar:
-
-```bash
-npx skills list -g     # lo instalado para todos tus proyectos
-npx skills list        # lo instalado en este proyecto
-```
-
-**Si no**, mirando las carpetas. **En Windows** (PowerShell), desde la carpeta de tu
-proyecto:
+**En Windows** (PowerShell), desde la carpeta de tu proyecto:
 
 ```powershell
 Get-ChildItem "$HOME\.claude\skills", "$HOME\.claude\rules", ".claude\skills", ".claude\rules" -ErrorAction SilentlyContinue | Select-Object FullName
@@ -134,28 +125,49 @@ descargado: lo hace todo, desde traerse la colección hasta dejar puestas las on
 skills y las cinco reglas.
 
 ```prompt-usuario
-Instala la colección de skills portables en mi carpeta personal, para que valga
+Instala en mi carpeta personal la colección de skills portables, para que valga
 en todos mis proyectos.
 
-Descárgala en una carpeta temporal desde
-https://github.com/Sagitario-A/skills-portables
-y sitúate en su última versión publicada: la etiqueta más reciente, no la rama.
+1. Tráetela. Clona https://github.com/Sagitario-A/skills-portables en una
+   carpeta temporal, con el historial completo —un clonado superficial deja
+   fuera las etiquetas—, y sitúate en la última versión publicada creando una
+   rama local a partir de su etiqueta de versión más alta.
 
-Lee su INSTALAR.md y haz el camino de usuario entero, las dos piezas: copia las
-once carpetas de skills a ~/.claude/skills/, y crea los cinco archivos de reglas
-en ~/.claude/rules/ con el texto exacto que declara cada INSTALACION.md, con su
-línea de atribución delante.
+2. Abre el INSTALAR.md que viene dentro y haz el camino de usuario entero. Son
+   dos piezas y hacen falta las dos:
+   - copia las once carpetas de skills a ~/.claude/skills/;
+   - crea los cinco archivos de reglas en ~/.claude/rules/, cada uno con el
+     texto exacto que declara su INSTALACION.md y con su línea de atribución
+     delante.
 
-No resumas ni reescribas ningún texto: van literales.
+   Esos cinco textos van literales: no los resumas, no los reescribas y no los
+   mejores.
 
-Al terminar, pásame las comprobaciones del paso 3, dime qué versión has
-instalado y qué ha quedado sin hacer.
+3. Hazlo copiando, no con «npx skills»: esa herramienta reparte la colección
+   por medio centenar de carpetas de otros programas que no uso.
+
+NO TE SALGAS DE AHÍ. Lo único que puedes escribir está dentro de ~/.claude/, y
+la carpeta temporal del punto 1. Si algo te lleva a escribir en cualquier otro
+sitio, párate y dímelo en vez de hacerlo.
+
+Al terminar, en este orden:
+- si estás dentro de la carpeta de un proyecto, comprueba que ese proyecto no
+  tiene además la colección en su .claude/: tenerla en los dos sitios a la vez
+  la rompe, y si la encuentras dímelo en vez de borrar nada;
+- borra la carpeta temporal;
+- pasa las comprobaciones que indique el INSTALAR.md para este camino;
+- y dime qué versión has instalado, qué encontraste y qué ha quedado sin hacer.
 ```
 
-Tres cosas de ese texto no son adorno: **«las dos piezas»** impide que se salte la segunda,
-que es la que la gente se deja; **«van literales»** evita que los textos de regla se
-parafraseen, que es lo único que sale mal; y **pedir las comprobaciones** hace que la
-instalación se verifique sola.
+Nada de ese texto es adorno, y conviene saber por qué está cada parte:
+
+- **«las dos piezas»** impide que se salte la segunda, que es la que la gente se deja;
+- **«van literales»** evita que los cinco textos de regla se parafraseen, que es lo único
+  que sale mal al hacerlo así;
+- **la barra de seguridad** acota por escrito dónde se puede escribir, de modo que un
+  descuido se convierte en una pregunta en vez de en archivos sueltos por tu ordenador;
+- **la comprobación del otro sitio** caza la instalación duplicada antes de que ocurra;
+- y **pedir las comprobaciones** hace que la instalación se verifique sola.
 
 Como escribe fuera del proyecto, **pedirá permiso un par de veces y hay que aceptar**. A
 cambio te enseña cada texto antes de escribirlo, así que ves lo que entra.
@@ -166,18 +178,7 @@ cambio te enseña cada texto antes de escribirlo, así que ves lo que entra.
 
 Van a `~/.claude/skills/`, cada una en su propia carpeta y con su `SKILL.md` dentro.
 
-**La forma corta**, si tienes Node instalado — una línea, sin descargar nada a mano:
-
-```bash
-npx skills add Sagitario-A/skills-portables --all -g
-```
-
-Es una herramienta abierta de terceros que trae las carpetas enteras y las coloca sola. Deja
-los archivos de verdad en `~/.agents/skills/` y pone en `~/.claude/skills/` enlaces que
-apuntan ahí. Para este camino da igual, porque esa carpeta no se mueve de sitio nunca.
-
-**La forma a mano**, que no depende de nadie y sirve igual. Desde la carpeta donde has
-descargado la colección:
+Desde la carpeta donde has descargado la colección:
 
 **Windows** (PowerShell):
 
@@ -284,25 +285,45 @@ las once skills y las cinco reglas.
 ```prompt-proyecto
 Instala la colección de skills portables en este proyecto.
 
-Descárgala en una carpeta temporal fuera del proyecto, desde
-https://github.com/Sagitario-A/skills-portables
-y sitúate en su última versión publicada: la etiqueta más reciente, no la rama.
+1. Tráetela. Clona https://github.com/Sagitario-A/skills-portables en una
+   carpeta temporal fuera del proyecto, con el historial completo —un clonado
+   superficial deja fuera las etiquetas—, y sitúate en la última versión
+   publicada creando una rama local a partir de su etiqueta de versión más alta.
 
-Lee su INSTALAR.md y haz el camino de proyecto entero, las dos piezas: copia las
-once carpetas de skills a .claude/skills/, y crea los cinco archivos de reglas en
-.claude/rules/ con el texto exacto que declara cada INSTALACION.md, con su línea
-de atribución delante.
+2. Abre el INSTALAR.md que viene dentro y haz el camino de proyecto entero. Son
+   dos piezas y hacen falta las dos:
+   - copia las once carpetas de skills a .claude/skills/ de este proyecto;
+   - crea los cinco archivos de reglas en .claude/rules/, cada uno con el texto
+     exacto que declara su INSTALACION.md y con su línea de atribución delante.
 
-No resumas ni reescribas ningún texto: van literales.
+   Esos cinco textos van literales: no los resumas, no los reescribas y no los
+   mejores.
 
-Al terminar, pásame las comprobaciones del paso 4, dime qué versión has instalado
-y qué ha quedado sin hacer.
+3. Hazlo copiando, nunca con «npx skills»: aquí deja enlaces con rutas de esta
+   máquina, y el proyecto se queda sin skills en cuanto alguien lo clona.
+
+NO TE SALGAS DEL PROYECTO. Lo único que puedes escribir está dentro de esta
+carpeta, y la descarga temporal del punto 1. Si algo te lleva a escribir en mi
+carpeta personal, párate y dímelo en vez de hacerlo.
+
+Al terminar, en este orden:
+- comprueba que no queda nada de la colección en ~/.claude/skills/ ni en
+  ~/.claude/rules/: tenerla en los dos sitios a la vez la rompe, y si
+  encuentras algo dímelo en vez de borrarlo;
+- borra la carpeta temporal;
+- pasa las comprobaciones que indique el INSTALAR.md para este camino;
+- y dime qué versión has instalado, qué encontraste y qué ha quedado sin hacer.
 ```
 
-Tres cosas de ese texto no son adorno: **«las dos piezas»** impide que se salte la segunda,
-que es la que la gente se deja; **«van literales»** evita que los textos de regla se
-parafraseen, que es lo único que sale mal; y **pedir las comprobaciones** hace que la
-instalación se verifique sola.
+Nada de ese texto es adorno, y conviene saber por qué está cada parte:
+
+- **«las dos piezas»** impide que se salte la segunda, que es la que la gente se deja;
+- **«van literales»** evita que los cinco textos de regla se parafraseen, que es lo único
+  que sale mal al hacerlo así;
+- **la barra de seguridad** acota por escrito dónde se puede escribir, de modo que un
+  descuido se convierte en una pregunta en vez de en archivos sueltos por tu ordenador;
+- **la comprobación del otro sitio** caza la instalación duplicada antes de que ocurra;
+- y **pedir las comprobaciones** hace que la instalación se verifique sola.
 
 Todo ocurre dentro de la carpeta del proyecto, así que **casi no pregunta nada**.
 
@@ -312,14 +333,20 @@ Todo ocurre dentro de la carpeta del proyecto, así que **casi no pregunta nada*
 
 Van a `.claude/skills/` dentro del proyecto. **Aquí se copian a mano y ya está.**
 
-> **Por qué aquí no se usa `npx skills`, aunque en el otro camino sí.** Esa herramienta no
-> deja las skills: deja **enlaces con la ruta absoluta de esta máquina**, apuntando a una
-> carpeta `.agents/skills/` del propio proyecto. Comprobado: al mover el proyecto de sitio,
-> los once enlaces apuntan a la nada. En un clonado en otro ordenador pasa lo mismo.
+> **Por qué no se usa aquí el instalador por comando.** Hay una herramienta abierta,
+> `npx skills add`, que instala skills desde un repositorio. **Para esta colección no
+> sirve, en ninguno de los dos caminos**, y está comprobado:
 >
-> Eso destruye justo lo que este camino existe para conseguir —que la colección viaje con el
-> repositorio—, y lo destruye **en silencio**: quien clone verá las carpetas en su sitio y
-> ninguna skill funcionando. **No lo cambies.**
+> - **En un proyecto no deja las skills: deja enlaces con la ruta absoluta de esta
+>   máquina.** Al mover el proyecto de sitio, los once enlaces apuntan a la nada; en un
+>   clonado en otro ordenador, igual. Eso destruye justo lo que este camino busca —que la
+>   colección viaje con el repositorio— y lo destruye **en silencio**: quien clone verá las
+>   carpetas en su sitio y ninguna skill funcionando.
+> - **A nivel de usuario reparte la colección por 53 carpetas** de otros programas
+>   —Tabnine, Qwen, Roo, Trae y cuarenta y tantos más—, y **no se puede acotar**: pedirle que
+>   instale solo para Claude no cambia nada. Desinstalar dejaría de ser borrar dos carpetas.
+>
+> **No lo cambies por comodidad.**
 
 **Windows** (PowerShell), desde la carpeta de la colección, cambiando la ruta de destino por
 la de tu proyecto:
@@ -500,8 +527,9 @@ Es reversible, y no hay ningún dato que perder: son instrucciones, no informaci
 Cuando la colección cambie, vuelve a hacer los pasos 1 y 2 del camino que tengas. Tres
 avisos:
 
-1. **Las copias no se enteran solas.** Copiar de nuevo es lo único que actualiza. Si
-   instalaste con `npx skills`, `npx skills update -g` hace el paso 1 por ti.
+1. **Las copias no se enteran solas.** Copiar de nuevo es lo único que actualiza. Lo más
+   cómodo es volver a pegar el prompt: se trae la última versión publicada y repite las dos
+   piezas.
 2. **Las reglas no las actualiza nadie**, ni la herramienta ni nada: el paso 2 es siempre a
    mano, y también al actualizar.
 3. **Si habías editado una regla a mano, no la sobrescribas sin mirar.** Compara lo que
@@ -514,17 +542,11 @@ avisos:
 Borra las once carpetas de skills y los cinco archivos de regla, en el sitio donde los
 tengas — los comandos son los de [cambiar de camino](#cambiar-de-camino).
 
-**Si instalaste con `npx skills`, hay una carpeta más que borrar.** Esa herramienta deja los
-archivos de verdad en **`~/.agents/skills/`** y en `~/.claude/skills/` solo enlaces que
-apuntan ahí. Borrar los enlaces no borra nada: quita también las once carpetas de
-`~/.agents/skills/`, o deja que lo haga ella:
-
-```bash
-npx skills remove --all -g
-```
-
-Y en un proyecto donde se instalara con la herramienta, quedan además `.agents/skills/` y un
-archivo `skills-lock.json` en la raíz.
+**Si en algún momento instalaste con `npx skills`, hay más que borrar.** Esa herramienta
+deja los archivos de verdad en **`~/.agents/skills/`** y reparte enlaces por las carpetas de
+los demás agentes, así que borrar lo de `~/.claude/` no borra nada. Quítalo con
+`npx skills remove --all -g`, y revisa que no queden `~/.agents/skills/` ni, en proyectos,
+un `.agents/skills/` con su `skills-lock.json`.
 
 **Fuera de eso no deja rastro en ninguna parte.** Los documentos que se hayan escrito
 mientras tanto —el registro de cambios, la lista de pendientes, el manual del proyecto— son
