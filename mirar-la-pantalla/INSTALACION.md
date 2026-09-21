@@ -7,87 +7,116 @@ sale», la skill se activa sola, porque esas frases se parecen a lo que declara.
 
 **Lo que no:** su otro momento es **después de cualquier cambio visual, antes de darlo por
 terminado** — y ese momento no lo anuncia nadie. Se termina de escribir la interfaz y se
-reporta. Sin el texto de abajo, ese paso se salta sin dejar síntoma: las pruebas pasan, todo
+reporta. Sin la línea de abajo, ese paso se salta sin dejar síntoma: las pruebas pasan, todo
 parece correcto, y nadie ha visto la pantalla.
 
-## Texto a instalar
+## La línea que declara esta skill
 
 ```
-Si la skill «mirar-la-pantalla» está instalada, úsala: lleva el procedimiento completo. Si
-no está, haz lo que dice el resto de esta regla, que se basta sola.
-
-Ningún cambio visible para alguien se da por terminado sin haberlo visto: se hace una
-captura de la app real, se abre, y se mira. No basta con que las comprobaciones pasen —
-una pantalla puede pasarlas todas y ser ilegible, salirse o quedarse en blanco.
-
-Y no se mira de una sola pasada general. Al menos: si se lee, si cabe, cómo queda vacío y
-cómo queda con demasiados datos, y cómo queda en el otro tema si la app respeta el del
-sistema.
-
-Al terminar, se dice qué se ha mirado y **se pide confirmación de que es lo que se quería**,
-en concreto y no en general: mirar una pantalla no dice nada sobre si resuelve lo que se
-pidió.
+- **Nada más cambiar algo visible para alguien**, y antes de darlo por terminado, abre la
+  skill «mirar-la-pantalla».
 ```
+
+## Aquí no va el procedimiento, y es a propósito
+
+La línea dice **cuándo**, nunca **cómo**. El cómo está dentro de la skill, y ponerlo también
+aquí es lo que consigue que la skill no se abra nunca: si el texto que ya está delante
+resuelve el momento, no hay motivo para buscar más, y se acaba usando la versión corta
+teniendo instalada la larga.
+
+**Está comprobado, no supuesto.** Con el procedimiento copiado en la regla, en las pruebas
+reales las skills de cerrar trabajo no se abrieron ni una vez: se hizo la versión corta y se
+perdió lo que solo está en la completa.
+
+Por eso la línea no se basta sola a propósito. Es un puntero, y **para cumplirla hay que
+abrir la skill**.
+
+## Qué hacer si la skill no está
+
+Que se diga y lo decida la persona. **Nunca improvisar un sustituto ni seguir como si el
+paso no existiera**: sin la skill, ese paso no se ha hecho, y decirlo es lo que hace que una
+desinstalación se note en vez de perderse en silencio.
 
 ## Dónde va
 
-**Si hay una carpeta de reglas, el archivo va ahí.** Puede ser la del proyecto
-(`.claude/rules/`) o la tuya de usuario (`~/.claude/rules/`), según cómo esté instalada
-la colección — en una de las dos, nunca en las dos a la vez. Crea ahí el archivo
-`mirar-la-pantalla.md` con ese texto, precedido de esta línea:
+**En el ciclo de trabajo del proyecto: un solo texto, que se lee al principio de cada
+conversación y encadena todos los momentos como un método.** Uno, no uno por skill — cinco
+avisos sueltos se leen como cinco deberes; encadenados se leen como una forma de trabajar.
+
+**Si hay una carpeta de reglas, el ciclo es un archivo de ahí.** Puede ser la del proyecto
+(`.claude/rules/`) o la tuya de usuario (`~/.claude/rules/`), según cómo esté instalada la
+colección — en una de las dos, nunca en las dos a la vez.
+
+- **Si ya existe `ciclo-de-trabajo.md`**, añade la línea en su sitio dentro del orden. No
+  crees un archivo aparte: dos sitios con el mismo ciclo acaban siendo dos ciclos distintos.
+- **Si no existe**, créalo con esta forma:
 
 ```
-> Instalado por la skill «mirar-la-pantalla». Si la desinstalas, borra este archivo.
+> Instalado por la colección de skills portables. Cada línea nombra la skill que la
+> ejecuta; si desinstalas una, borra su línea.
+
+En este proyecto se trabaja siguiendo este ciclo. **Cada paso lo hace la skill que lo
+nombra: ábrela, que el procedimiento está dentro de ella y aquí no.**
+
+   ...las líneas, en orden...
+
+**Si alguna de estas skills no está instalada, dilo y que lo decida la persona.** No
+improvises un sustituto ni sigas como si el paso no existiera.
 ```
 
-**No la limites a ciertos archivos.** Parece razonable —solo importa al tocar algo que se
-ve— pero deja fuera dos casos reales:
+**Si no hay carpeta de reglas:** el ciclo va dentro del documento de instrucciones que se
+cargue en cada conversación, delimitado así:
+
+```
+<!-- inicio: ciclo de trabajo de las skills portables — retirar si se desinstalan -->
+   ...el ciclo...
+<!-- fin: ciclo de trabajo de las skills portables -->
+```
+
+## No limites el ciclo a ciertos archivos
+
+Parece razonable —esto solo importa al tocar algo que se ve— pero deja fuera dos casos
+reales:
 
 - **Lo que se rompe desde fuera.** Si el servidor empieza a devolver textos más largos, la
   tarjeta se rompe sin que se haya tocado ningún archivo de los que pintan.
 - **Lo que se ve y no vive en un componente.** Una imagen generada, un gráfico dibujado
   por código, un documento que se produce para descargar.
 
-Lo que hace que esta regla no estorbe donde no aplica **no es el límite, es cómo está
-redactada**: «ningún cambio **visible para alguien**…». En un proyecto sin nada visible
-esa condición no se cumple nunca, y la regla no llega a activarse aunque esté cargada.
+Lo que hace que esta línea no estorbe donde no aplica **no es el límite, es cómo está
+redactada**: «algo **visible para alguien**». En un proyecto sin nada visible esa condición
+no se cumple nunca, y el paso no llega a activarse aunque esté cargado.
 
 El límite decidiría si el recordatorio está presente; la condición decide si se actúa. Y
-un recordatorio de más cuesta unas líneas, mientras que un recordatorio ausente cuesta un
+un recordatorio de más cuesta una línea, mientras que un recordatorio ausente cuesta un
 fallo que nadie ve.
-
-**Si no hay ninguna:** pega el texto en el documento de instrucciones que se cargue en cada
-conversación, delimitado así:
-
-```
-<!-- inicio: instrucciones de la skill «mirar-la-pantalla» — retirar si se desinstala -->
-   ...el texto...
-<!-- fin: instrucciones de la skill «mirar-la-pantalla» -->
-```
 
 ## Se configura siempre, en todos los proyectos
 
-**No hay excepciones.** Aunque el proyecto no tenga hoy nada a lo que esta regla pueda
-aplicarse, se instala y se configura igual.
+**No hay excepciones.** Aunque el proyecto no tenga hoy nada a lo que esta línea pueda
+aplicarse, se instala igual.
 
 El motivo es que **está redactada en condicional**. Si no hay nada que encaje con esa
-condición, la regla no llega a activarse: está cargada y dormida, y no cuesta más que las
-pocas líneas que ocupa. No es una obligación imposible de cumplir — es una condición que
-no se da.
+condición, no llega a activarse: está cargada y dormida, y no cuesta más que la línea que
+ocupa. No es una obligación imposible de cumplir — es una condición que no se da.
 
 Y tiene dos ventajas sobre configurar a medias:
 
-- **Se quita la ambigüedad.** No hay que acordarse de qué reglas están puestas en qué
+- **Se quita la ambigüedad.** No hay que acordarse de qué pasos están puestos en qué
   proyecto ni comprobarlo antes de confiar en nada.
-- **El día que el proyecto cambie, ya está.** Si aparece algo a lo que la regla aplica,
-  empieza a actuar sola, sin que nadie tenga que volver a configurar nada.
+- **El día que el proyecto cambie, ya está.** Si aparece algo a lo que el paso aplica,
+  empieza a actuar solo, sin que nadie tenga que volver a configurar nada.
 
 ## Al actualizar o reinstalar
 
-Compara lo que hay puesto con el texto de arriba. Si coincide, se sustituye sin más. Si no
-coincide, **está editado a mano**: no lo toques, enseña la diferencia y pregunta.
+**Compara la línea que hay puesta con la de arriba.** Si coincide, se sustituye sin más. Si
+no coincide, **está editada a mano**: no la toques, enseña la diferencia y pregunta.
+
+Y si lo que hay puesto es una regla de las antiguas —un archivo propio con el procedimiento
+entero dentro—, **eso es lo que se sustituye por la línea**. Enséñalo antes de retirarlo.
 
 ## Al desinstalar
 
-Borra el archivo de regla, o el bloque entre marcas. Las capturas y la configuración del
-navegador se quedan donde estén: son del proyecto.
+Borra la línea que nombra a esta skill. Si era la única, borra el archivo del ciclo entero,
+o el bloque entre marcas. Las capturas y la configuración del navegador se quedan donde
+estén: son del proyecto.

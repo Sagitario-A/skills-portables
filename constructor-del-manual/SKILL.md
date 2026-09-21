@@ -136,40 +136,75 @@ casi nadie escribe y lo que más se echa en falta. Lo habitual que debería esta
 
 
 **4. Cómo se verifica que algo está terminado**, y la obligación de decir qué no se ha
-podido comprobar. Escríbelo como obligación —«antes de reportar algo como terminado, pasa
-las comprobaciones del proyecto y declara lo que no hayas podido comprobar»—, **nunca como
-el nombre suelto de una herramienta o de una skill**: si mañana se desinstala, el documento
-se queda mintiendo, y es el único que se lee siempre.
+podido comprobar. Escríbelo como obligación con su momento —«antes de reportar algo como
+terminado…»—, y **nombra la skill que lo hace, si hay una instalada**.
 
-**Nombrarla sí vale si va acompañada de qué hacer cuando no está.** «Si está instalada tal
-skill, úsala, que lleva el procedimiento completo; si no está, haz esto otro» no puede
-quedarse mintiendo, porque la segunda mitad cubre el día que desaparezca. Y hace falta:
-**un texto que se basta solo consigue que la skill no llegue a abrirse nunca**, porque la
-obligación ya está dicha y no hay motivo para buscar más.
+Nombrarla no es un descuido: es el reparto que conviene. **El manual guarda el hecho** —qué
+hay que hacer y cuándo, que es lo que hay que saber siempre— **y la skill el procedimiento**,
+que se carga cuando toca. Un procedimiento de treinta líneas dentro del manual es peso
+muerto en todas las conversaciones que no lo necesitan.
 
-Ahí está el reparto que conviene: **el manual guarda el hecho** —lo que hay que saber
-siempre—, **y la skill el procedimiento**, que se carga cuando toca. Un procedimiento de
-treinta líneas dentro del manual es peso muerto en todas las conversaciones que no lo
-necesitan, y encima tapa a la skill que lo haría mejor.
+Este punto es en realidad **un paso del ciclo**, así que escríbelo ahí y con sus mismas
+reglas — nombrar sin copiar el procedimiento, y con salvaguarda. Están en el punto 5.
 
-**5. El ciclo de trabajo, escrito como tal y no como reglas sueltas.** Cuando hay varias
-obligaciones instaladas, **no las dejes como una lista de normas independientes**: pon
-delante una frase corta que las encadene y las presente como una forma de trabajar.
+**5. El ciclo de trabajo, escrito como tal y no como reglas sueltas.** Esta es la pieza que
+hace que todo lo demás funcione junto, y la que más se hace mal.
 
-Algo del estilo: «en este proyecto se trabaja así: antes de construir algo complejo se
-investiga; lo que se ve, se mira; antes de dar algo por terminado, se comprueba y se dice
-qué ha quedado sin comprobar; al cerrar, se registra la decisión.»
+**Qué es.** Un solo texto que dice, en orden, qué pasa en cada momento del trabajo y **qué
+skill instalada lo hace**. No cinco avisos sueltos que no se conocen entre sí: un flujo.
 
-Dos cosas importan aquí:
+Algo de esta forma, con las piezas que haya de verdad:
 
-- **Se escribe a partir de lo que hay instalado de verdad**, no de una lista traída de
-  fuera. Si solo hay dos obligaciones, la frase encadena dos.
-- **Solo el ciclo que se repite.** Lo que ocurre una vez —definir el proyecto, escribir
-  este mismo manual— **no va aquí**: ya pasó cuando alguien lea esto, y ocupa sitio sin
-  cambiar ningún comportamiento.
+> En este proyecto se trabaja siguiendo este ciclo. **Cada paso lo hace la skill que lo
+> nombra: ábrela, que el procedimiento está dentro de ella y aquí no.**
+>
+> 1. **Antes de construir cualquier cosa**, abre la skill «…».
+> 2. **Nada más cambiar algo visible para alguien**, y antes de darlo por terminado, abre
+>    la skill «…».
+> 3. **Antes de reportar cualquier trabajo como terminado**, abre la skill «…».
+> 4. **Antes de dar por cerrado un trabajo con efecto real**, abre la skill «…».
+>
+> **Si alguna de estas skills no está instalada, dilo y que lo decida la persona.** No
+> improvises un sustituto ni sigas como si el paso no existiera.
 
-Cinco reglas sueltas se leen como cinco obligaciones que cumplir. Encadenadas se leen como
-un método, y eso cambia si se siguen o no.
+Y ahora lo que importa de verdad, que son cinco cosas:
+
+- **Nombra las skills, una por una.** Aquí sí se nombran, y no rompe nada: el manual **no
+  es una skill**, es un documento de este proyecto escrito después de comprobar qué hay
+  instalado. Lo que no puede hacer una skill —nombrar a otra, y quedarse apuntando al vacío
+  si se la llevan suelta— sí puede hacerlo el manual, porque se escribió sabiendo qué hay.
+  El cableado vive fuera de las skills, hecho a medida de cada proyecto.
+
+- **No copies su procedimiento. Ni resumido.** Es el error que arruina esta pieza: si el
+  ciclo lleva delante una versión corta de cada paso, **las skills no llegan a abrirse**,
+  porque ya hay una respuesta delante. El ciclo dice **cuándo**; el **cómo** está dentro de
+  cada skill y solo ahí. La línea no se basta sola a propósito: es un puntero, y para
+  cumplirla hay que abrir la skill.
+
+- **Con salvaguarda.** La frase del final no es adorno: es lo que sustituye al procedimiento
+  copiado. Si una skill se desinstala, el ciclo **lo dice** en vez de improvisar, y así una
+  desinstalación se nota. Con el procedimiento copiado no se notaba nunca.
+
+- **A partir de lo instalado de verdad**, no de una lista traída de fuera. Compruébalo antes
+  de escribir. Si solo hay dos, el ciclo tiene dos pasos.
+
+- **Solo el ciclo que se repite.** Lo que ocurre una vez —definir el proyecto, escribir este
+  mismo manual— **no va aquí**: ya pasó cuando alguien lea esto, y ocupa sitio sin cambiar
+  ningún comportamiento.
+
+**En un solo sitio.** Si el proyecto ya tiene un archivo de ciclo en su carpeta de reglas
+—puesto al instalar la colección—, **afínalo ahí y no lo copies al manual**. Dos sitios con
+el mismo ciclo acaban siendo dos ciclos distintos, y el que miente es siempre el que estás
+leyendo. Si no hay carpeta de reglas, el ciclo va en el manual, y entonces el manual es el
+único sitio.
+
+**Y si te encuentras reglas sueltas con el procedimiento copiado dentro —una por skill—,
+eso es lo que el ciclo sustituye.** Di qué hay, enseña lo que quedaría en su lugar, y
+retíralas solo con aprobación. Seis cosas diciendo lo mismo pasan a ser una, y la que queda
+es la que sí abre las skills.
+
+Reglas sueltas se leen como obligaciones que cumplir. Encadenadas se leen como un método, y
+eso cambia si se siguen o no.
 
 
 ## Cómo se redacta para que se cumpla

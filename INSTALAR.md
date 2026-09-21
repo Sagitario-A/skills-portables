@@ -18,14 +18,23 @@ Esto es lo que más se falla al instalar, así que va primero.
 **seis** de las once: las que se despiertan porque tú dices algo («apunta esto», «dame
 ideas», «vamos a revisar el proyecto»).
 
-**Pieza 2 — las cinco reglas.** Las otras cinco skills no esperan a que las llames: actúan
-solas en un momento que nadie anuncia —justo antes de decirte que algo está terminado, por
-ejemplo—. No hay ninguna frase que las despierte, así que necesitan una línea puesta donde
-se lea al principio de cada conversación.
+**Pieza 2 — el ciclo de trabajo.** Las otras cinco skills no esperan a que las llames:
+actúan solas en un momento que nadie anuncia —justo antes de decirte que algo está
+terminado, por ejemplo—. No hay ninguna frase que las despierte, así que hace falta un texto
+puesto donde se lea al principio de cada conversación.
+
+Ese texto es **un solo archivo con una línea por skill**, que dice en orden qué pasa en cada
+momento del trabajo y **cuál de ellas lo hace**. Un flujo, no cinco avisos sueltos.
 
 > **Si te saltas la pieza 2, esas cinco están instaladas y no hacen nada.** Sin aviso y sin
 > síntoma: nada falla, simplemente no ocurre. Por eso la instalación tiene dos pasos y no
 > uno.
+
+**Y ese texto no lleva el procedimiento de las skills, a propósito.** Dice cuándo, nunca
+cómo. Si llevara delante una versión corta de cada paso, las skills no llegarían a abrirse:
+ya habría una respuesta delante y no habría motivo para buscar más. Está medido — se probó
+al revés y se abrió una de tres. En su lugar lleva una salvaguarda: si una de esas skills no
+está, se dice en vez de improvisar, y así una desinstalación se nota.
 
 **Por qué no se puede automatizar:** ningún paquete puede escribir en el archivo de
 instrucciones de tu proyecto. No es un descuido nuestro, es que el mecanismo no existe —
@@ -122,7 +131,7 @@ Esa carpeta personal es `~/.claude/`. En Windows eso es `C:\Users\TU-USUARIO\.cl
 
 Abre una conversación en cualquier carpeta y pégale este encargo. No hace falta tener nada
 descargado: lo hace todo, desde traerse la colección hasta dejar puestas las once
-skills y las cinco reglas.
+skills y el ciclo de trabajo.
 
 ```prompt-usuario
 Instala en mi carpeta personal la colección de skills portables, para que valga
@@ -136,12 +145,19 @@ en todos mis proyectos.
 2. Abre el INSTALAR.md que viene dentro y haz el camino de usuario entero. Son
    dos piezas y hacen falta las dos:
    - copia las once carpetas de skills a ~/.claude/skills/;
-   - crea los cinco archivos de reglas en ~/.claude/rules/, cada uno con el
-     texto exacto que declara su INSTALACION.md y con su línea de atribución
-     delante.
+   - crea UN archivo, ~/.claude/rules/ciclo-de-trabajo.md, con el ciclo
+     completo: la cabecera, las cinco líneas que declaran sus INSTALACION.md
+     en el orden que indica INSTALAR.md, y la salvaguarda del final.
 
-   Esos cinco textos van literales: no los resumas, no los reescribas y no los
-   mejores.
+   Ese texto va literal: no lo resumas, no lo reescribas y no lo mejores. Y no
+   le añadas el procedimiento de ninguna skill, ni resumido: el ciclo dice
+   cuándo, y el cómo vive dentro de cada skill. Si se lo añades, dejan de
+   abrirse.
+
+   Si ya tengo ahí los cinco archivos de reglas de una versión anterior
+   —investigar.md, mirar-la-pantalla.md, recorrer-la-aplicacion.md,
+   registrar-cambios.md, validar-antes-de-entregar.md—, enséñamelos y dime que
+   los sustituye este ciclo. No los borres sin que yo lo diga.
 
 3. Hazlo copiando, no con «npx skills»: esa herramienta reparte la colección
    por medio centenar de carpetas de otros programas que no uso.
@@ -162,8 +178,9 @@ Al terminar, en este orden:
 Nada de ese texto es adorno, y conviene saber por qué está cada parte:
 
 - **«las dos piezas»** impide que se salte la segunda, que es la que la gente se deja;
-- **«van literales»** evita que los cinco textos de regla se parafraseen, que es lo único
-  que sale mal al hacerlo así;
+- **«va literal»** evita que el ciclo se parafrasee o se le añada procedimiento, que es lo
+  único que sale mal al hacerlo así — y añadirle procedimiento es justo lo que hace que las
+  skills dejen de abrirse;
 - **la barra de seguridad** acota por escrito dónde se puede escribir, de modo que un
   descuido se convierte en una pregunta en vez de en archivos sueltos por tu ordenador;
 - **la comprobación del otro sitio** caza la instalación duplicada antes de que ocurra;
@@ -206,57 +223,69 @@ Debe quedarte así:
 └── ... hasta once
 ```
 
-### Paso 2 — poner las cinco reglas
+### Paso 2 — poner el ciclo de trabajo
 
-Cinco de las once carpetas traen, además del `SKILL.md`, un archivo **`INSTALACION.md`**.
-Ese archivo es la declaración de la skill: dice por qué hace falta, **el texto exacto** que
-hay que dejar puesto, y qué hacer al actualizar o desinstalar.
-
-Son estas cinco: `investigar`, `validar-antes-de-entregar`, `registrar-cambios`,
-`mirar-la-pantalla`, `recorrer-la-aplicacion`.
-
-Para cada una:
-
-1. Abre su `INSTALACION.md` y busca la sección **«Texto a instalar»**.
-2. Crea el archivo `~/.claude/rules/<nombre-de-la-skill>.md`.
-3. Dentro pon **primero** la línea de atribución que indica ese mismo documento —dice qué
-   skill puso el archivo, para poder retirarlo después— y **debajo** el texto.
-
-Te quedará así:
+**Es un solo archivo:** `~/.claude/rules/ciclo-de-trabajo.md`. Créalo con este contenido,
+tal cual:
 
 ```
-~/.claude/rules/
-├── investigar.md
-├── mirar-la-pantalla.md
-├── recorrer-la-aplicacion.md
-├── registrar-cambios.md
-└── validar-antes-de-entregar.md
+> Instalado por la colección de skills portables. Cada línea nombra la skill que la
+> ejecuta; si desinstalas una, borra su línea.
+
+En este proyecto se trabaja siguiendo este ciclo. **Cada paso lo hace la skill que lo
+nombra: ábrela, que el procedimiento está dentro de ella y aquí no.**
+
+1. **Antes de construir cualquier cosa**, abre la skill «investigar»: decide ella, con cinco
+   comprobaciones de una línea, si el caso merece investigarse. Casi siempre dirá que no.
+2. **Nada más cambiar algo visible para alguien**, y antes de darlo por terminado, abre la
+   skill «mirar-la-pantalla».
+3. **Nada más construir o cambiar un camino que una persona pueda recorrer** por la
+   interfaz, y antes de darlo por terminado, abre la skill «recorrer-la-aplicacion».
+4. **Antes de reportar cualquier trabajo como terminado**, abre la skill
+   «validar-antes-de-entregar».
+5. **Antes de dar por cerrado un trabajo con efecto real**, abre la skill
+   «registrar-cambios». Una tarea no está terminada hasta que su entrada existe.
+
+Los tres primeros pasos solo entran si se cumple su condición. Los dos últimos cierran todo
+trabajo, y en ese orden: primero se comprueba, y después se registra lo comprobado.
+
+**Si alguna de estas skills no está instalada, dilo y que lo decida la persona.** No
+improvises un sustituto ni sigas como si el paso no existiera: el procedimiento vive en la
+skill, y sin ella ese paso no se ha hecho.
 ```
 
-> **Se ponen las cinco, siempre.** Aunque tu proyecto no tenga interfaz, aunque no lleve
-> registro de cambios. Están escritas en condicional —«ningún cambio *visible*…», «*un
-> camino que una persona pueda recorrer*»—, así que donde no aplican no llegan a activarse:
-> quedan cargadas y dormidas, y ocupan unas pocas líneas. Dejar fuera las que «hoy no hacen
-> falta» solo consigue que el día que hagan falta no estén.
+**De dónde sale cada línea.** Cinco de las once carpetas traen, además del `SKILL.md`, un
+archivo **`INSTALACION.md`**: ahí cada skill declara **su** línea, por qué hace falta y qué
+hacer al actualizar o desinstalar. El ciclo de arriba es esas cinco líneas puestas en orden,
+con su cabecera y su salvaguarda.
+
+> **Van las cinco, siempre.** Aunque tu proyecto no tenga interfaz, aunque no lleve registro
+> de cambios. Están escritas en condicional —«algo *visible para alguien*», «*un camino que
+> una persona pueda recorrer*»—, así que donde no aplican no llegan a activarse: quedan
+> cargadas y dormidas, y ocupan una línea. Dejar fuera las que «hoy no hacen falta» solo
+> consigue que el día que hagan falta no estén.
+
+> **Y no le añadas el procedimiento de ninguna skill, ni resumido.** El ciclo dice **cuándo**;
+> el **cómo** vive dentro de cada skill. Un procedimiento delante compite con la skill que
+> debería reemplazar y gana él: se probó al revés, y de tres skills se abrió una.
 
 **Si prefieres que lo haga Claude:** abre una conversación en la carpeta de la colección y
 dile *«sigue INSTALAR.md por el camino A»*. Lee este documento y los cinco `INSTALACION.md`,
-y te propone los archivos antes de crearlos.
+y te propone el archivo antes de crearlo.
 
 ### Paso 3 — comprobar que ha funcionado de verdad
 
 Copiar los archivos no demuestra que se estén cargando. Estas dos comprobaciones sí.
 
 **1. ¿Están las reglas en contexto?** Abre una conversación **nueva** en cualquier proyecto
-y escribe `/context`. Deben aparecer los cinco archivos de regla en la lista de archivos de
-instrucciones cargados. Si no aparecen, no están haciendo nada.
+y escribe `/context`. Debe aparecer `ciclo-de-trabajo.md` en la lista de archivos de
+instrucciones cargados. Si no aparece, no está haciendo nada.
 
 **2. ¿Están las skills disponibles?** En esa misma conversación, pregunta: *«¿tienes
 instalada alguna skill para apuntar ideas?»*. Debería reconocerla.
 
 Si la primera comprobación falla, casi siempre es que el archivo está en el sitio
-equivocado: repasa que la ruta sea exactamente `~/.claude/rules/` y que los archivos acaben
-en `.md`.
+equivocado: repasa que la ruta sea exactamente `~/.claude/rules/` y que acabe en `.md`.
 
 ### El precio de este camino
 
@@ -280,7 +309,7 @@ Vive dentro del repositorio y **viaja con él**: quien lo clone recibe la colecc
 
 Abre una conversación **en la carpeta de tu proyecto** y pégale este encargo. No hace falta
 tener nada descargado: lo hace todo, desde traerse la colección hasta dejar puestas
-las once skills y las cinco reglas.
+las once skills y el ciclo de trabajo.
 
 ```prompt-proyecto
 Instala la colección de skills portables en este proyecto.
@@ -293,11 +322,19 @@ Instala la colección de skills portables en este proyecto.
 2. Abre el INSTALAR.md que viene dentro y haz el camino de proyecto entero. Son
    dos piezas y hacen falta las dos:
    - copia las once carpetas de skills a .claude/skills/ de este proyecto;
-   - crea los cinco archivos de reglas en .claude/rules/, cada uno con el texto
-     exacto que declara su INSTALACION.md y con su línea de atribución delante.
+   - crea UN archivo, .claude/rules/ciclo-de-trabajo.md, con el ciclo completo:
+     la cabecera, las cinco líneas que declaran sus INSTALACION.md en el orden
+     que indica INSTALAR.md, y la salvaguarda del final.
 
-   Esos cinco textos van literales: no los resumas, no los reescribas y no los
-   mejores.
+   Ese texto va literal: no lo resumas, no lo reescribas y no lo mejores. Y no
+   le añadas el procedimiento de ninguna skill, ni resumido: el ciclo dice
+   cuándo, y el cómo vive dentro de cada skill. Si se lo añades, dejan de
+   abrirse.
+
+   Si este proyecto ya tiene los cinco archivos de reglas de una versión
+   anterior —investigar.md, mirar-la-pantalla.md, recorrer-la-aplicacion.md,
+   registrar-cambios.md, validar-antes-de-entregar.md—, enséñamelos y dime que
+   los sustituye este ciclo. No los borres sin que yo lo diga.
 
 3. Hazlo copiando, nunca con «npx skills»: aquí deja enlaces con rutas de esta
    máquina, y el proyecto se queda sin skills en cuanto alguien lo clona.
@@ -318,8 +355,9 @@ Al terminar, en este orden:
 Nada de ese texto es adorno, y conviene saber por qué está cada parte:
 
 - **«las dos piezas»** impide que se salte la segunda, que es la que la gente se deja;
-- **«van literales»** evita que los cinco textos de regla se parafraseen, que es lo único
-  que sale mal al hacerlo así;
+- **«va literal»** evita que el ciclo se parafrasee o se le añada procedimiento, que es lo
+  único que sale mal al hacerlo así — y añadirle procedimiento es justo lo que hace que las
+  skills dejen de abrirse;
 - **la barra de seguridad** acota por escrito dónde se puede escribir, de modo que un
   descuido se convierte en una pregunta en vez de en archivos sueltos por tu ordenador;
 - **la comprobación del otro sitio** caza la instalación duplicada antes de que ocurra;
@@ -367,26 +405,20 @@ mkdir -p "$destino"
 for d in */; do [ -f "$d/SKILL.md" ] && cp -r "$d" "$destino/"; done
 ```
 
-### Paso 2 — poner las cinco reglas
+### Paso 2 — poner el ciclo de trabajo en el proyecto
 
-Igual que en el camino A, pero dentro del proyecto: los archivos van a
-`.claude/rules/<nombre-de-la-skill>.md`.
-
-Mismas cinco skills, mismo procedimiento —abrir su `INSTALACION.md`, copiar el texto,
-anteponer la línea de atribución—, y **las cinco siempre**, por el mismo motivo.
+Igual que en el camino A, pero dentro del proyecto: el archivo va a
+`.claude/rules/ciclo-de-trabajo.md`, **con el mismo contenido exacto**, que está escrito
+entero en el [paso 2 del camino A](#paso-2--poner-el-ciclo-de-trabajo).
 
 Te quedará así:
 
 ```
 tu-proyecto/
 └── .claude/
-    ├── skills/          ← las once
+    ├── skills/                 ← las once
     └── rules/
-        ├── investigar.md
-        ├── mirar-la-pantalla.md
-        ├── recorrer-la-aplicacion.md
-        ├── registrar-cambios.md
-        └── validar-antes-de-entregar.md
+        └── ciclo-de-trabajo.md ← las cinco líneas, encadenadas
 ```
 
 **Si prefieres que lo haga Claude:** abre una conversación en tu proyecto, enséñale la
@@ -407,7 +439,7 @@ git commit -m "instalar la colección de skills"
 Las mismas dos comprobaciones del camino A, pero **con la conversación abierta dentro del
 proyecto**:
 
-**1.** Conversación nueva → `/context` → deben salir los cinco archivos de regla.
+**1.** Conversación nueva → `/context` → debe salir `ciclo-de-trabajo.md`.
 **2.** Pregunta si reconoce alguna de las skills.
 
 Y una tercera que solo aplica aquí: **pídele a alguien del equipo que clone el repositorio y
@@ -417,7 +449,7 @@ su única ventaja.
 ### El precio de este camino
 
 1. **Hay que repetirlo en cada proyecto nuevo.** No se hereda: un proyecto nuevo empieza sin
-   nada, y hay que volver a copiar las once carpetas y crear los cinco archivos.
+   nada, y hay que volver a copiar las once carpetas y crear el archivo del ciclo.
 2. **Engorda el repositorio** con archivos que no son del producto.
 3. **Si mejoras una skill, hay que llevar el cambio a cada proyecto** donde la hayas
    instalado, uno por uno. Con dos proyectos es incómodo; con seis es una fuente de
@@ -490,30 +522,32 @@ Es reversible, y no hay ningún dato que perder: son instrucciones, no informaci
 
 ### De usuario a proyecto
 
-1. **Retira la de usuario.** Borra las once carpetas de `~/.claude/skills/` y los cinco
-   archivos de `~/.claude/rules/`.
+1. **Retira la de usuario.** Borra las once carpetas de `~/.claude/skills/` y el archivo
+   del ciclo de `~/.claude/rules/`.
 
    ```bash
    # macOS o Linux
    rm -rf ~/.claude/skills/{apuntar,auditar-proyecto,constructor-del-manual,investigar,lluvia-de-ideas,mirar-la-pantalla,planificar-proyecto,recorrer-la-aplicacion,registrar-cambios,registrar-comprobacion-humana,validar-antes-de-entregar}
+   rm -f ~/.claude/rules/ciclo-de-trabajo.md
+   # y, si vienes de una versión anterior a la 0.2.0, también los cinco antiguos:
    rm -f ~/.claude/rules/{investigar,validar-antes-de-entregar,registrar-cambios,mirar-la-pantalla,recorrer-la-aplicacion}.md
    ```
 
    > **Borra solo esos nombres.** Esas dos carpetas pueden tener cosas tuyas que no vienen
    > de aquí. No borres las carpetas enteras.
 
-2. **Comprueba que se ha ido**: conversación nueva → `/context` → los cinco archivos ya no
-   deben aparecer.
+2. **Comprueba que se ha ido**: conversación nueva → `/context` → el archivo del ciclo ya no
+   debe aparecer.
 3. **Instala el [camino B](#camino-b--a-nivel-de-proyecto)** desde el paso 1.
 
 ### De proyecto a usuario
 
-1. **Retira la del proyecto.** Borra `.claude/skills/` y los cinco archivos de
+1. **Retira la del proyecto.** Borra `.claude/skills/` y el archivo del ciclo de
    `.claude/rules/`. Si lo habías subido, hazlo también en el repositorio:
 
    ```bash
    git rm -r --cached .claude/skills
-   git rm --cached .claude/rules/{investigar,validar-antes-de-entregar,registrar-cambios,mirar-la-pantalla,recorrer-la-aplicacion}.md
+   git rm --cached .claude/rules/ciclo-de-trabajo.md
    git commit -m "retirar la colección de skills del proyecto"
    ```
 
@@ -530,17 +564,37 @@ avisos:
 1. **Las copias no se enteran solas.** Copiar de nuevo es lo único que actualiza. Lo más
    cómodo es volver a pegar el prompt: se trae la última versión publicada y repite las dos
    piezas.
-2. **Las reglas no las actualiza nadie**, ni la herramienta ni nada: el paso 2 es siempre a
+2. **El ciclo no lo actualiza nadie**, ni la herramienta ni nada: el paso 2 es siempre a
    mano, y también al actualizar.
-3. **Si habías editado una regla a mano, no la sobrescribas sin mirar.** Compara lo que
-   tienes puesto con el texto que declara hoy su `INSTALACION.md`. Si coincide, sustitúyelo
-   sin más. **Si no coincide, está tocado**: mira la diferencia y decide tú. Tus cambios no
-   deben desaparecer en silencio.
+3. **Si lo habías editado a mano, no lo sobrescribas sin mirar.** Compara lo que tienes
+   puesto con lo que declara hoy este documento. Si coincide, sustitúyelo sin más. **Si no
+   coincide, está tocado**: mira la diferencia y decide tú. Tus cambios no deben desaparecer
+   en silencio.
+
+### Si vienes de una versión anterior a la 0.2.0, hay que intervenir
+
+Hasta la `0.1.2` el paso 2 eran **cinco archivos de regla**, uno por skill, y cada uno
+llevaba dentro el procedimiento corto de su skill. **Desde la `0.2.0` es un solo archivo con
+el ciclo, y sin procedimiento.** No es una mejora cosmética: con el procedimiento delante,
+las skills no llegaban a abrirse — se probó, y de tres se abrió una.
+
+Así que actualizar aquí no es solo volver a copiar:
+
+1. Crea `ciclo-de-trabajo.md` con el contenido del paso 2.
+2. **Borra los cinco antiguos**: `investigar.md`, `mirar-la-pantalla.md`,
+   `recorrer-la-aplicacion.md`, `registrar-cambios.md` y `validar-antes-de-entregar.md`, en
+   la carpeta de reglas donde los tengas.
+3. Si habías editado alguno, **míralo antes de borrarlo**: lo que le hubieras añadido no
+   está en ninguna otra parte.
+
+> **Dejar los cinco además del ciclo es el peor resultado posible**, peor que no actualizar:
+> tendrías el ciclo diciendo que abras la skill y, justo al lado, el procedimiento que hace
+> que no haga falta abrirla. Uno, y solo uno.
 
 ## Desinstalar
 
-Borra las once carpetas de skills y los cinco archivos de regla, en el sitio donde los
-tengas — los comandos son los de [cambiar de camino](#cambiar-de-camino).
+Borra las once carpetas de skills y el archivo del ciclo, en el sitio donde los tengas — los
+comandos son los de [cambiar de camino](#cambiar-de-camino).
 
 **Si en algún momento instalaste con `npx skills`, hay más que borrar.** Esa herramienta
 deja los archivos de verdad en **`~/.agents/skills/`** y reparte enlaces por las carpetas de

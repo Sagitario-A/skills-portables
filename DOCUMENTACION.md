@@ -27,8 +27,10 @@ Ninguna skill nombra a otra. Se coordinan de dos formas:
 
 - **Por descripción.** Cada una declara cuándo es útil. Lo que pides encaja con una y esa
   se activa. No hay cableado entre ellas.
-- **Por las reglas instaladas.** Las que actúan solas necesitan una línea en un archivo que
-  se lea al principio de cada conversación. Ahí es donde se cablea el flujo completo.
+- **Por el ciclo instalado.** Las que actúan solas necesitan una línea en un archivo que se
+  lea al principio de cada conversación. Ese archivo las encadena a todas en un orden, y
+  **ahí es donde se cablea el flujo completo** — fuera de las skills, que siguen sin
+  conocerse entre ellas.
 
 Consecuencia práctica: **puedes instalar una sola y funciona.** Y puedes instalarlas todas
 y funcionan como un sistema.
@@ -45,7 +47,7 @@ revisar el proyecto». No hay que configurar nada: se instalan y ya responden.
 **Las pasivas actúan solas, en un momento concreto.** Por ejemplo, justo antes de que se te
 diga que un trabajo está terminado. Ese momento no lo anuncias tú, así que **no hay ninguna
 frase que las despierte** — y por eso necesitan una línea instalada donde se lea en cada
-conversación.
+conversación. Las cinco líneas juntas son el ciclo de trabajo.
 
 **Si no instalas esa línea, la skill está ahí pero no hace nada.** Sin aviso, sin síntoma.
 Por eso la instalación tiene dos pasos.
@@ -76,9 +78,10 @@ se entienda por qué es así.
 carpeta de skills, la tuya de usuario o la del proyecto: se elige una de las dos, **nunca
 las dos a la vez**.
 
-**Paso 2 — Poner las cinco reglas.** Cada skill pasiva trae un archivo `INSTALACION.md` que
-declara el texto exacto que hay que dejar puesto y dónde va. Se crea un archivo por skill en
-la carpeta de reglas.
+**Paso 2 — Poner el ciclo de trabajo.** Un solo archivo en la carpeta de reglas, con una
+línea por skill pasiva: dice en orden qué pasa en cada momento del trabajo y **cuál de ellas
+lo hace**. Cada skill declara su línea en su archivo `INSTALACION.md`; el ciclo es esas cinco
+líneas puestas en orden.
 
 **Este segundo paso lo haces tú.** Puedes pedírselo a Claude —enseñándole
 [INSTALAR.md](INSTALAR.md) y las declaraciones— y que te proponga los archivos antes de
@@ -91,54 +94,66 @@ la documentación oficial, no supuesto.
 
 ### Qué aparece al configurar
 
-Un archivo por cada skill pasiva, en la carpeta de reglas del sitio donde hayas instalado
-—la del proyecto, o la tuya de usuario:
+Un solo archivo, en la carpeta de reglas del sitio donde hayas instalado —la del proyecto, o
+la tuya de usuario:
 
 ```
 .claude/rules/            (o bien  ~/.claude/rules/)
-├── investigar.md
-├── validar-antes-de-entregar.md
-├── registrar-cambios.md
-├── mirar-la-pantalla.md
-└── recorrer-la-aplicacion.md
+└── ciclo-de-trabajo.md
 ```
 
-Cada uno lleva una primera línea diciendo qué skill lo puso. **Desinstalar es borrar ese
-archivo.**
+Dentro, una línea por skill pasiva, en orden: antes de construir, se investiga; nada más
+cambiar algo visible, se mira; al acabar un camino, se recorre; antes de reportar terminado,
+se valida; al cerrar, se registra. **Cada línea nombra la skill que hace ese paso**, y
+desinstalar una es borrar su línea.
 
-Y cada texto **empieza apuntando a su propia skill, en condicional**: si la skill está
-instalada, que se use ella, que lleva el procedimiento completo; si no está, vale lo que
-dice el resto del archivo, que se basta solo. Sin esa primera línea pasa algo que no se ve:
-la regla ya dice qué hacer, así que **la skill no llega a abrirse nunca** y se acaba usando
-la versión corta teniendo instalada la larga.
+**Lo que ese archivo no lleva es el procedimiento de las skills, y es lo que lo hace
+funcionar.** Dice **cuándo**, nunca **cómo**: el cómo vive dentro de cada skill y solo ahí,
+así que para cumplir la línea hay que abrirla.
 
-Si no hay carpeta de reglas —porque uses otra herramienta—, el texto va dentro del documento
+Suena a detalle y es lo contrario. Durante un tiempo cada regla llevaba además el
+procedimiento corto, para que funcionara sin la skill. Resultado medido: **el texto corto
+resuelve el momento, nadie busca más, y la skill no llega a abrirse** — de tres, se abrió
+una. El repuesto compite con lo que debería reemplazar, y gana el repuesto.
+
+En su lugar, el ciclo lleva una **salvaguarda**: si una de esas skills no está, se dice y lo
+decides tú, en vez de improvisar un sustituto. Así una desinstalación **se nota**; con el
+procedimiento copiado no se notaba nunca.
+
+Si no hay carpeta de reglas —porque uses otra herramienta—, el ciclo va dentro del documento
 de instrucciones que tenga, entre marcas de inicio y fin que dicen en texto llano de dónde
 salió y que puede retirarse.
 
 ### Se instala todo y se configura todo
 
-**Las once se instalan y todas sus reglas se configuran, en cualquier proyecto.** Sin
-excepciones y sin decisiones que tomar.
+**Las once se instalan y el ciclo va entero, en cualquier proyecto.** Sin excepciones y sin
+decisiones que tomar.
 
-Podría parecer que algunas sobran —¿para qué la regla de mirar la pantalla en un proyecto
-sin nada visible?—. No sobran, porque **están redactadas en condicional**: «ningún cambio
-*visible*…», «cuando se acabe de construir *un camino que una persona pueda recorrer*…».
-Donde no hay nada que encaje, la condición no se cumple y la regla no llega a activarse.
-Está cargada y dormida.
+Podría parecer que algunos pasos sobran —¿para qué el de mirar la pantalla en un proyecto
+sin nada visible?—. No sobran, porque **están redactados en condicional**: «algo *visible
+para alguien*», «*un camino que una persona pueda recorrer*». Donde no hay nada que encaje,
+la condición no se cumple y el paso no llega a activarse. Está cargado y dormido.
 
 Configurarlo todo tiene dos ventajas sobre hacerlo a medias:
 
 - **No hay que acordarse de nada.** Todos los proyectos se comportan igual, y no hay que
   comprobar qué está activo antes de fiarse.
 - **El día que el proyecto cambie, ya está puesto.** Si le sale una interfaz donde antes
-  no había, esa regla empieza a actuar sola.
+  no había, ese paso empieza a actuar solo.
 
-### Si has editado una regla a mano
+### Si has editado el ciclo a mano
 
 Al reinstalar o actualizar, se compara con lo declarado. Si coincide, se sustituye. **Si no
-coincide, está tocada: no se toca, se te enseña la diferencia y se pregunta.** Tus cambios
+coincide, está tocado: no se toca, se te enseña la diferencia y se pregunta.** Tus cambios
 no se borran en silencio.
+
+### Si vienes de una versión anterior a la 0.2.0
+
+Hasta la `0.1.2` el paso 2 eran **cinco archivos de regla** con el procedimiento corto
+dentro. Desde la `0.2.0` es **uno solo con el ciclo, sin procedimiento**. Al actualizar hay
+que crear el nuevo **y borrar los cinco viejos**: dejar los dos es el peor resultado
+posible, porque tendrías el ciclo diciendo que abras la skill y al lado el texto que hace
+que no haga falta. El procedimiento está en [INSTALAR.md](INSTALAR.md).
 
 ---
 
@@ -150,10 +165,13 @@ Así encajan de principio a fin:
 idea quede definida. Sale `PROYECTO.md`.
 
 **2. Conversación nueva** → `constructor-del-manual`. Lee esa definición y escribe el manual
-del proyecto: las reglas de trabajo y el ciclo que las encadena. Deja el terreno preparado.
+del proyecto: las reglas de trabajo, y el ciclo que encadena las skills instaladas. Deja el
+terreno preparado.
 
-*Las cinco reglas de las skills pasivas no las pone esta skill: se instalan por separado,
-una sola vez, siguiendo [INSTALAR.md](INSTALAR.md).*
+*El ciclo de partida lo deja puesto la instalación, una sola vez, siguiendo
+[INSTALAR.md](INSTALAR.md). Lo que hace esta skill es afinarlo con lo que este proyecto
+tenga de verdad — y si encuentra reglas sueltas de una versión anterior, proponer que el
+ciclo las sustituya.*
 
 **3. Se construye.** Y mientras se construye, actúan solas: `investigar` antes de algo
 complejo, `mirar-la-pantalla` tras un cambio visual, `recorrer-la-aplicacion` al terminar
@@ -201,8 +219,12 @@ tres niveles de prohibición, incluido uno intermedio que te pregunta aunque tra
 aprobaciones.
 
 Y no deja las obligaciones como una lista de normas sueltas: **escribe el ciclo de trabajo**
-que encadena las que haya instaladas de verdad, para que se lean como un método y no como
-cinco deberes independientes.
+que encadena las skills que haya instaladas de verdad, **nombrándolas**, para que se lean
+como un método y no como cinco deberes independientes.
+
+Con dos cosas que deciden si funciona: **no copia el procedimiento de ninguna** —el ciclo
+dice cuándo, y el cómo vive dentro de cada skill—, y **deja una salvaguarda** para que, si
+alguna no está instalada, se diga en vez de improvisar.
 
 En un proyecto que ya existe, primero te enseña un diagnóstico y **tú eliges cuánto se
 interviene**: retoque, poda o rehacerlo. Con copia de seguridad, y nunca borra una regla
@@ -229,7 +251,7 @@ no a favor**, y un documento con lo encontrado, lo descartado y las fuentes.
 no manda. **Y no investiga si no puede consultar fuentes fuera**: lo dice antes de empezar,
 en vez de entregar deducciones propias con aspecto de investigación.
 
-**Instalación.** **Sí.** Sin su regla, sus comprobaciones no llegan a pasarse nunca.
+**Instalación.** **Sí.** Sin su línea en el ciclo, sus comprobaciones no llegan a pasarse nunca.
 
 ---
 
@@ -287,7 +309,7 @@ captura.
 **Lo que no hace.** No audita rendimiento, no comprueba caminos, y no ve lo que solo existe
 en el aparato de verdad —teclado del móvil, gestos, giro—: eso te lo pide a ti, en concreto.
 
-**Instalación.** **Sí**, y se configura en todos los proyectos: donde no haya nada visible, su condición no se cumple y la regla queda dormida sin estorbar.
+**Instalación.** **Sí**, y va en todos los proyectos: donde no haya nada visible, su condición no se cumple y su línea queda dormida sin estorbar.
 
 **Montaje.** La primera vez en cada proyecto hay que montar el navegador automatizado, y
 decidir con qué aparato y a qué tamaño se captura. Está en su archivo `MONTAJE.md`, aparte

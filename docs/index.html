@@ -43,12 +43,19 @@ en todos mis proyectos.
 2. Abre el INSTALAR.md que viene dentro y haz el camino de usuario entero. Son
    dos piezas y hacen falta las dos:
    - copia las once carpetas de skills a ~/.claude/skills/;
-   - crea los cinco archivos de reglas en ~/.claude/rules/, cada uno con el
-     texto exacto que declara su INSTALACION.md y con su línea de atribución
-     delante.
+   - crea UN archivo, ~/.claude/rules/ciclo-de-trabajo.md, con el ciclo
+     completo: la cabecera, las cinco líneas que declaran sus INSTALACION.md
+     en el orden que indica INSTALAR.md, y la salvaguarda del final.
 
-   Esos cinco textos van literales: no los resumas, no los reescribas y no los
-   mejores.
+   Ese texto va literal: no lo resumas, no lo reescribas y no lo mejores. Y no
+   le añadas el procedimiento de ninguna skill, ni resumido: el ciclo dice
+   cuándo, y el cómo vive dentro de cada skill. Si se lo añades, dejan de
+   abrirse.
+
+   Si ya tengo ahí los cinco archivos de reglas de una versión anterior
+   —investigar.md, mirar-la-pantalla.md, recorrer-la-aplicacion.md,
+   registrar-cambios.md, validar-antes-de-entregar.md—, enséñamelos y dime que
+   los sustituye este ciclo. No los borres sin que yo lo diga.
 
 3. Hazlo copiando, no con «npx skills»: esa herramienta reparte la colección
    por medio centenar de carpetas de otros programas que no uso.
@@ -91,11 +98,19 @@ Instala la colección de skills portables en este proyecto.
 2. Abre el INSTALAR.md que viene dentro y haz el camino de proyecto entero. Son
    dos piezas y hacen falta las dos:
    - copia las once carpetas de skills a .claude/skills/ de este proyecto;
-   - crea los cinco archivos de reglas en .claude/rules/, cada uno con el texto
-     exacto que declara su INSTALACION.md y con su línea de atribución delante.
+   - crea UN archivo, .claude/rules/ciclo-de-trabajo.md, con el ciclo completo:
+     la cabecera, las cinco líneas que declaran sus INSTALACION.md en el orden
+     que indica INSTALAR.md, y la salvaguarda del final.
 
-   Esos cinco textos van literales: no los resumas, no los reescribas y no los
-   mejores.
+   Ese texto va literal: no lo resumas, no lo reescribas y no lo mejores. Y no
+   le añadas el procedimiento de ninguna skill, ni resumido: el ciclo dice
+   cuándo, y el cómo vive dentro de cada skill. Si se lo añades, dejan de
+   abrirse.
+
+   Si este proyecto ya tiene los cinco archivos de reglas de una versión
+   anterior —investigar.md, mirar-la-pantalla.md, recorrer-la-aplicacion.md,
+   registrar-cambios.md, validar-antes-de-entregar.md—, enséñamelos y dime que
+   los sustituye este ciclo. No los borres sin que yo lo diga.
 
 3. Hazlo copiando, nunca con «npx skills»: aquí deja enlaces con rutas de esta
    máquina, y el proyecto se queda sin skills en cuanto alguien lo clona.
@@ -132,7 +147,8 @@ Al terminar, en este orden:
     <li><strong>Tienes una idea.</strong> Te pregunta en lenguaje llano hasta que la idea
       quede definida. Sale <code>PROYECTO.md</code>.</li>
     <li><strong>Conversación nueva.</strong> Lee esa definición y escribe el manual del
-      proyecto: las reglas de trabajo y el ciclo que las encadena.</li>
+      proyecto: las reglas de trabajo, y el ciclo que encadena las skills que haya
+      instaladas de verdad.</li>
     <li><strong>Se construye.</strong> Y mientras se construye, actúan solas: se investiga
       antes de algo complejo, se mira la pantalla tras un cambio visual, se recorre el flujo
       al terminarlo, se comprueba antes de decirte que está hecho, y se registra al cerrar.</li>
@@ -167,6 +183,13 @@ Al terminar, en este orden:
 
     <article>
       <h3>Actúan solas</h3>
+      <p class="nota">
+        Estas cinco no esperan a que las llames, así que la instalación deja puesto un
+        <strong>ciclo de trabajo</strong>: un archivo con una línea por cada una, que dice en
+        orden qué pasa en cada momento y cuál lo hace. Dice <em>cuándo</em>, nunca
+        <em>cómo</em> — el procedimiento vive dentro de cada skill, que es lo que hace que
+        se abran.
+      </p>
       <dl>
         <dt><code>investigar</code></dt>
         <dd>Antes de construir algo difícil de deshacer. También: «investiga cómo se hace
@@ -192,7 +215,7 @@ Al terminar, en este orden:
 </main>
 
 <footer class="pie">
-  <span>v<span id="version-actual">0.1.2</span></span>
+  <span>v<span id="version-actual">0.2.0</span></span>
   <a href="documentacion.html">Documentación</a>
   <a id="enlace-repo" href="#">Repositorio</a>
   <span class="descarga">

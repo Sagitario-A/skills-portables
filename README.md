@@ -59,6 +59,12 @@ Cada skill funciona sola el primer día, instalada suelta y sin ninguna compañe
 Motivo: si se llaman por su nombre entre ellas, llevarse una sola a otro proyecto —o
 publicar solo tres de siete— deja instrucciones que apuntan a algo que no existe.
 
+**Lo que prohíbe es que una skill nombre a otra.** El manual del proyecto y el ciclo de
+trabajo **no son skills**: son documentos de ese proyecto, escritos después de comprobar qué
+hay instalado de verdad. Ahí sí se nombran las once, y no puede quedar apuntando al vacío
+porque se escribió sabiendo qué había. **El cableado vive fuera de las skills**, hecho a
+medida de cada sitio — ver «Dónde se coordinan».
+
 **3. Cooperación por descripción, no por cableado.**
 Las skills se activan porque lo que describen encaja con lo que se está haciendo. Ese
 mecanismo ya las coordina de hecho, sin que ninguna sepa de las demás.
@@ -92,36 +98,53 @@ contenido del `SKILL.md` se carga entero cada vez que la skill se usa, y unas
 instrucciones de instalación ahí dentro costarían atención en el único momento en que no
 sirven para nada.
 
-Ese archivo declara cuatro cosas: **por qué hace falta**, **el texto exacto**, **dónde
-va** y **qué hacer al actualizar y al desinstalar**. Y es autosuficiente: se sigue sin
-conocer esta colección y sin tener ninguna otra skill instalada.
+Ese archivo declara cuatro cosas: **por qué hace falta**, **la línea exacta** que la skill
+aporta al ciclo, **dónde va** y **qué hacer al actualizar y al desinstalar**. Y es
+autosuficiente: se sigue sin conocer esta colección y sin tener ninguna otra skill
+instalada.
 
-**El texto empieza apuntando a su propia skill, en condicional.** Primero una línea que
-dice que si la skill está instalada se use ella, porque lleva el procedimiento completo; y
-después el texto corto, que es lo que se hace cuando no está. Cubre los dos casos con una
-sola redacción.
+**Lo que se instala es una línea, no un procedimiento.** Dice **cuándo** le toca a esa skill
+y **la nombra**; el **cómo** vive dentro de ella y solo ahí. La línea no se basta sola a
+propósito: es un puntero, y **para cumplirla hay que abrir la skill**.
 
-Esto no es adorno. **Un texto que se basta solo hace que la skill no llegue a abrirse
-nunca**: si la regla ya dice qué hacer, no hay motivo para buscar más, y se acaba usando la
-versión corta teniendo la larga instalada. Pasó en la primera prueba con todo puesto, y se
-notó en lo que se perdió por el camino.
+**Esto es lo contrario de lo que se hizo al principio, y el cambio lo obligó una prueba.**
+Durante un tiempo cada regla llevaba, además del puntero, el procedimiento corto entero,
+para que siguiera funcionando sin la skill instalada. Era una decisión tomada queriendo, y
+resultó equivocada: **el repuesto compite con lo que debería reemplazar, y gana el
+repuesto.** Cuando llega el momento ya hay una respuesta delante, no hay motivo para buscar
+más, y la skill no llega a abrirse. Medido: con las cinco reglas puestas, en la prueba real
+se abrió **una de tres**. Las otras dos hicieron la versión corta y se perdió lo que solo
+está en la completa.
 
-Y tiene respaldo fuera de casa: la guía oficial de la herramienta separa las dos cosas —**el
-manual y las reglas son para hechos que hay que saber siempre; los procedimientos van en las
-skills**, que se cargan cuando toca—. Un procedimiento entero metido en una regla está en el
-sitio equivocado. Lo que aquí se hace es dejar en la regla el hecho y el puntero, y **quedarse
-además con el procedimiento corto** para que siga funcionando sin la skill: eso último es
-decisión propia, y va más allá de lo que recomienda la guía a propósito.
+Lo que sustituye al repuesto no es nada: es **una salvaguarda**. Si la skill no está, que se
+diga y lo decida la persona, en vez de improvisar. Así una desinstalación **se nota** —con
+el procedimiento copiado no se notaba nunca, porque el texto corto seguía funcionando y
+nadie se enteraba de haber perdido la versión buena.
+
+Y ahora coincide con lo de fuera de casa: la guía oficial de la herramienta separa las dos
+cosas —**el manual y las reglas son para hechos que hay que saber siempre; los procedimientos
+van en las skills**, que se cargan cuando toca—. Un procedimiento entero metido en una regla
+está en el sitio equivocado, y esta colección lo tuvo así hasta que la prueba lo enseñó.
+
+**Y las líneas no van sueltas: se encadenan en un solo ciclo.** No un archivo por skill, sino
+un texto que dice en orden qué pasa en cada momento del trabajo y qué skill lo hace. Líneas
+sueltas se leen como obligaciones independientes; encadenadas se leen como un método, y eso
+cambia si se siguen o no. Ese ciclo lo deja puesto la instalación, y lo afina
+`constructor-del-manual` con lo que ese proyecto tenga de verdad.
 
 La colocación, por orden de preferencia:
 
 - **Un archivo propio en la carpeta de reglas del proyecto**, si la herramienta tiene una
-  (`.claude/rules/<nombre-de-la-skill>.md`). No toca ningún archivo ajeno, la atribución
-  es el nombre del archivo, y desinstalar es borrarlo. Lleva una primera línea visible
-  diciendo qué skill lo puso.
+  (`.claude/rules/ciclo-de-trabajo.md`). No toca ningún archivo ajeno, y lleva una primera
+  línea visible diciendo de dónde salió. **Desinstalar una skill es borrar su línea**, y si
+  era la única, el archivo.
 - **Un bloque delimitado por marcas** dentro del documento de instrucciones, solo si no
   existe esa carpeta. Las marcas dicen en texto llano de dónde salió el bloque y que
   puede retirarse — legibles sin conocer nada de esto.
+
+**Y en un solo sitio.** El ciclo no se copia también al manual del proyecto: dos sitios con
+el mismo ciclo acaban siendo dos ciclos distintos, y el que miente es siempre el que estás
+leyendo.
 
 **Hay tres casos, no dos.** Al decidir qué declara cada skill:
 
@@ -173,22 +196,35 @@ Si una skill necesita una plantilla o un archivo de apoyo, va dentro de su propi
 ## Dónde se coordinan, ya que no lo hacen entre ellas
 
 Ninguna skill nombra a otra, así que la pregunta es inevitable: si no se conocen, ¿quién
-decide el orden? **El manual del proyecto.** Ese archivo que se lee al principio de cada
-conversación es donde está escrito qué se hace en qué momento —antes de construir algo
-complejo se investiga; lo que se ve, se mira; antes de dar algo por terminado, se comprueba;
-al cerrar, se registra—. Quien lo fabrica es `constructor-del-manual`, a partir de lo que
-haya instalado de verdad.
+decide el orden? **El ciclo de trabajo del proyecto**, que se lee al principio de cada
+conversación.
+
+Es un solo texto que dice, en orden, qué pasa en cada momento del trabajo y **qué skill lo
+hace**: antes de construir algo, se abre la de investigar; nada más cambiar algo visible, la
+de mirar la pantalla; antes de reportar terminado, la de validar; al cerrar, la de
+registrar. Lo deja puesto la instalación, y lo afina `constructor-del-manual` con lo que ese
+proyecto tenga de verdad.
+
+**Tres cosas lo hacen funcionar, y las tres se aprendieron fallando:**
+
+- **Nombra las skills.** Sin el nombre no hay nada que abrir. Puede hacerlo porque no es una
+  skill: es un documento de este proyecto, escrito sabiendo qué hay instalado.
+- **No lleva su procedimiento, ni resumido.** Dice **cuándo**, nunca **cómo**. Un
+  procedimiento delante compite con la skill que debería reemplazar, y gana él — ver la
+  regla 7, donde está medido.
+- **Y lleva salvaguarda.** Si una de esas skills no está, se dice y lo decide la persona, en
+  vez de improvisar. Es lo que hace que una desinstalación se note.
 
 **Esa es la capa de composición, y ya existe.** No hace falta ninguna otra pieza, y las
 consecuencias de que sea así son las que sostienen media colección:
 
-- **La coordinación vive donde se carga siempre.** El manual está presente en todas las
+- **La coordinación vive donde se carga siempre.** El ciclo está presente en todas las
   conversaciones sin que nadie lo invoque. Cualquier otra cosa tendría que abrirse primero,
   y abrirse es precisamente lo que puede no ocurrir.
 - **El orden se cambia de opinión sin tocar ninguna skill.** Está escrito en un documento
   del proyecto, no repartido entre once archivos.
 - **Y cada proyecto puede tener el suyo.** El orden no viene impuesto por la colección: lo
-  escribe el manual de cada sitio, con las piezas que ese sitio tenga puestas.
+  escribe cada sitio, con las piezas que ese sitio tenga puestas.
 
 **Se estudió poner encima una skill que hiciera de conector, y se descartó**, por dos
 motivos que no se arreglan:
