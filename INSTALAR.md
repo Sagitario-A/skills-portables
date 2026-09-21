@@ -129,14 +129,17 @@ Esa carpeta personal es `~/.claude/`. En Windows eso es `C:\Users\TU-USUARIO\.cl
 
 ### La forma fácil — pegarle esto a Claude
 
-Abre una conversación en cualquier carpeta y pégale este encargo. Lo hace todo: las once
+Abre una conversación en cualquier carpeta y pégale este encargo. No hace falta tener nada
+descargado: lo hace todo, desde traerse la colección hasta dejar puestas las once
 skills y las cinco reglas.
 
 ```prompt-usuario
-Instala la colección de skills portables para todos mis proyectos.
+Instala la colección de skills portables en mi carpeta personal, para que valga
+en todos mis proyectos.
 
-La tengo descargada en <carpeta>. Si no la tengo, clónala de
+Descárgala en una carpeta temporal desde
 https://github.com/Sagitario-A/skills-portables
+y sitúate en su última versión publicada: la etiqueta más reciente, no la rama.
 
 Lee su INSTALAR.md y haz el camino de usuario entero, las dos piezas: copia las
 once carpetas de skills a ~/.claude/skills/, y crea los cinco archivos de reglas
@@ -145,7 +148,8 @@ línea de atribución delante.
 
 No resumas ni reescribas ningún texto: van literales.
 
-Al terminar, pásame las comprobaciones del paso 3 y dime qué ha quedado sin hacer.
+Al terminar, pásame las comprobaciones del paso 3, dime qué versión has
+instalado y qué ha quedado sin hacer.
 ```
 
 Tres cosas de ese texto no son adorno: **«las dos piezas»** impide que se salte la segunda,
@@ -273,14 +277,16 @@ Vive dentro del repositorio y **viaja con él**: quien lo clone recibe la colecc
 
 ### La forma fácil — pegarle esto a Claude
 
-Abre una conversación **en la carpeta de tu proyecto** y pégale este encargo. Lo hace todo:
+Abre una conversación **en la carpeta de tu proyecto** y pégale este encargo. No hace falta
+tener nada descargado: lo hace todo, desde traerse la colección hasta dejar puestas
 las once skills y las cinco reglas.
 
 ```prompt-proyecto
 Instala la colección de skills portables en este proyecto.
 
-La tengo descargada en <carpeta>. Si no la tengo, clónala de
+Descárgala en una carpeta temporal fuera del proyecto, desde
 https://github.com/Sagitario-A/skills-portables
+y sitúate en su última versión publicada: la etiqueta más reciente, no la rama.
 
 Lee su INSTALAR.md y haz el camino de proyecto entero, las dos piezas: copia las
 once carpetas de skills a .claude/skills/, y crea los cinco archivos de reglas en
@@ -289,7 +295,8 @@ de atribución delante.
 
 No resumas ni reescribas ningún texto: van literales.
 
-Al terminar, pásame las comprobaciones del paso 4 y dime qué ha quedado sin hacer.
+Al terminar, pásame las comprobaciones del paso 4, dime qué versión has instalado
+y qué ha quedado sin hacer.
 ```
 
 Tres cosas de ese texto no son adorno: **«las dos piezas»** impide que se salte la segunda,

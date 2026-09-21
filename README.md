@@ -170,20 +170,32 @@ diferencia y se pregunta.
 **8. Autocontenidas.**
 Si una skill necesita una plantilla o un archivo de apoyo, va dentro de su propia carpeta.
 
-## Decisiones tomadas que condicionan al cerebro
+## Dónde se coordinan, ya que no lo hacen entre ellas
 
-Está previsto escribir más adelante una **skill «cerebro»**: una capa de composición que
-coordine a las demás. No existe todavía, y estas decisiones se tomaron pensando en ella:
+Ninguna skill nombra a otra, así que la pregunta es inevitable: si no se conocen, ¿quién
+decide el orden? **El manual del proyecto.** Ese archivo que se lee al principio de cada
+conversación es donde está escrito qué se hace en qué momento —antes de construir algo
+complejo se investiga; lo que se ve, se mira; antes de dar algo por terminado, se comprueba;
+al cerrar, se registra—. Quien lo fabrica es `constructor-del-manual`, a partir de lo que
+haya instalado de verdad.
 
-- **La orquestación vive en el cerebro, no en las hojas.** Si las skills vinieran ya
-  acopladas entre sí, el cerebro heredaría un cableado que no diseñó y que no podría
-  rehacer sin editarlas todas. Manteniéndolas limpias, decide el orden él, y ese orden se
-  puede cambiar de opinión sin tocar ni una skill.
-- **El cerebro debe poder faltar.** Instalar la colección sin él tiene que seguir
-  funcionando. No es un requisito de arranque, es una mejora encima.
-- **El cerebro no debe reexplicar lo que hace cada skill**, por lo mismo que no lo hace
-  este documento: duplicar descripciones crea una segunda verdad que envejece. Que lea las
-  cabeceras.
-- **Al añadir una skill nueva a la colección**, lo único que hay que actualizar aquí es
-  una línea del índice. Si hiciera falta actualizar más, este documento estaría mal
-  planteado.
+**Esa es la capa de composición, y ya existe.** No hace falta ninguna otra pieza, y las
+consecuencias de que sea así son las que sostienen media colección:
+
+- **La coordinación vive donde se carga siempre.** El manual está presente en todas las
+  conversaciones sin que nadie lo invoque. Cualquier otra cosa tendría que abrirse primero,
+  y abrirse es precisamente lo que puede no ocurrir.
+- **El orden se cambia de opinión sin tocar ninguna skill.** Está escrito en un documento
+  del proyecto, no repartido entre once archivos.
+- **Y cada proyecto puede tener el suyo.** El orden no viene impuesto por la colección: lo
+  escribe el manual de cada sitio, con las piezas que ese sitio tenga puestas.
+
+**Se estudió poner encima una skill que hiciera de conector, y se descartó**, por dos
+motivos que no se arreglan:
+
+1. **Tendría que nombrar a las otras diez**, que es exactamente lo que prohíbe la regla 2 —
+   y por el motivo de la regla 2: llevarse una sola skill a otro proyecto dejaría referencias
+   a cosas que no están.
+2. **Y como es una skill, también depende de abrirse.** Añadiría un eslabón que puede fallar
+   sin quitar ninguno de los que ya hay. Un intermediario frágil delante de algo que ya
+   funciona no es una mejora.
